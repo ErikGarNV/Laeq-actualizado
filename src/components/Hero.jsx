@@ -556,7 +556,7 @@ const Badge = () => (
 );
 
 /* ══════════════════ MARQUEE ══════════════════ */
-const CL = ['ENGIE Perú', 'PETROPERÚ', 'MINEM', 'Osinergmin', 'Electroperú', 'Luz del Sur', 'Cálidda', 'ProInversión', 'GN Fenosa'];
+const CL = ['ENGIE Perú', 'PETROPERÚ', 'MINEM', 'Osinergmin', 'Electroperú', 'Luz del Sur', 'Cálidda', 'ProInversión'];
 const Marquee = () => {
   const all = [...CL, ...CL, ...CL, ...CL];
   return (

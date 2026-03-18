@@ -42,7 +42,7 @@ const SVC = [
     short: 'Estructuración y negociación de contratos de suministro.',
     detail: 'Diseño, estructuración y negociación de contratos de suministro de gas natural para industrias, generadoras y distribuidoras. Optimización de precios, cláusulas take-or-pay y garantías contractuales.',
     bullets: ['Take-or-pay clauses', 'Negociación comercial', 'Optimización de precios', 'Garantías contractuales'],
-    kpi: { val: '95%', label: 'Tasa de éxito' },
+    kpi: { val: '99%', label: 'Tasa de éxito' },
     icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
   },
   {

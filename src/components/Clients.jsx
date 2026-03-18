@@ -525,7 +525,7 @@ const Clients = () => {
           {[
             { val:'30+',  label:'Clientes de élite' },
             { val:'10+',  label:'Años de trayectoria' },
-            { val:'95%',  label:'Satisfacción' },
+            { val:'99%',  label:'Satisfacción' },
             { val:'100%', label:'Confidencialidad' },
           ].map((s,i) => (
             <div key={i} style={{ padding:'clamp(18px,2.5vw,28px)', borderRight: i<3 ? `1px solid ${T.brand}14` : 'none', textAlign:'center', background: i%2===0 ? `${T.brand}05` : 'transparent' }}>

@@ -53,8 +53,8 @@ const PROJECTS = [
     color: '#1EB8F0',
     summary: 'Desarrollo del marco regulatorio integral para el sector gas natural peruano con OSINERGMIN, incluyendo metodologías tarifarias y normativa de supervisión.',
     scope: 'Revisión del marco normativo, desarrollo de metodologías tarifarias innovadoras, elaboración de 15 procedimientos técnicos de supervisión y fiscalización, mecanismos de incentivos para eficiencia operativa.',
-    results: ['15 procedimientos técnicos especializados', 'Metodología tarifaria aprobada', '95% de implementación exitosa', 'Reducción 20% en tiempos de trámite'],
-    kpi: { val: '95%', label: 'Implementación' },
+    results: ['15 procedimientos técnicos especializados', 'Metodología tarifaria aprobada', '99% de implementación exitosa', 'Reducción 20% en tiempos de trámite'],
+    kpi: { val: '99%', label: 'Implementación' },
     links: [
       { label: 'OSINERGMIN', url: 'https://www.osinergmin.gob.pe' },
       { label: 'Consultor OSINERGMIN', url: 'https://theorg.com/org/osinergmin/org-chart/luis-espinoza' },
@@ -178,7 +178,7 @@ const PROJECTS = [
     headline: '500+ profesionales formados',
     color: '#C07CF0',
     summary: 'Programas continuos de capacitación en regulación energética, gas natural, PPA y energías renovables para empresas del sector. Docente en ESAN y conferencista en los principales foros del sector.',
-    scope: 'Diseño e impartición de cursos in-house, diplomas de especialización en ESAN (Gas Natural, Energías Renovables, Gestión de la Energía), talleres para ENGIE, Luz del Sur, Cálidda y entidades públicas.',
+    scope: 'Diseño e impartición de cursos in-house, diplomas de especialización en ESAN (Gas Natural, Energías Renovables, Gestión de la Energía), talleres para ENGIE,  Cálidda y entidades públicas.',
     results: ['500+ profesionales capacitados', 'Docente ESAN — 5 programas activos', 'In-house: ENGIE, Cálidda, Luz del Sur', 'Conferencista CONIMERA 2023 — CIP Lima'],
     kpi: { val: '500+', label: 'Profesionales' },
     links: [
