@@ -2,22 +2,23 @@ import React from 'react';
 import { ArrowUpRight, Zap, ShieldCheck } from 'lucide-react';
 import Hero from './components/Hero'; 
 import Services from './components/Services'; 
-import Projects from './components/Projects'; // Importación del nuevo componente
+import Projects from './components/Projects'; 
+import Clients  from './components/Clients'; 
 
 const App = () => {
   return (
     <div className="min-h-screen font-sans selection:bg-laeq-cyan/30 bg-[#001D3D] text-white">
       
-      {/* 1. EL HERO (Poder Institucional e Infraestructura) */}
+      {/* 1. EL HERO */}
       <Hero />
 
-      {/* 2. COMPONENTE DE SERVICIOS (Arquitectura de Soluciones) */}
+      {/* 2. COMPONENTE DE SERVICIOS */}
       <Services />
 
       {/* 3. SECCIÓN DE AUTORIDAD Y MÉTRICAS */}
       <section className="relative bg-[#000d1a] py-40 px-6 md:px-16 overflow-hidden border-t border-white/5">
         
-        {/* Fondo sutil con la grid técnica para coherencia visual */}
+        {/* Fondo sutil con la grid técnica */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('./assets/bg-grid-energy.png')] bg-fixed" />
 
         <div className="max-w-7xl mx-auto">
@@ -44,7 +45,7 @@ const App = () => {
               </div>
             </div>
 
-            {/* Bloque de Estadísticas (Grilla Editorial) */}
+            {/* Bloque de Estadísticas */}
             <div className="lg:col-span-7 grid md:grid-cols-2 gap-px bg-white/5 border border-white/5">
               
               <div className="bg-[#001126] p-12 space-y-4 hover:bg-white/[0.02] transition-colors">
@@ -78,11 +79,12 @@ const App = () => {
         </div>
       </section>
 
-      {/* 4. COMPONENTE DE PROYECTOS (Evidencia de Éxito) */}
-      {/* Esta sección cierra el ciclo de confianza mostrando casos reales */}
+      {/* 4. COMPONENTE DE PROYECTOS */}
       <Projects />
 
-      {/* Footer o secciones finales podrían ir aquí */}
+      {/* 5. CLIENTES */}
+      <Clients />
+
     </div>
   );
 };

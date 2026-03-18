@@ -30,16 +30,16 @@ const PROJECTS = [
     cat: 'Contratos PPA',
     tag: 'Contratos',
     client: 'ENGIE Perú',
-    title: 'Estructuración PPA\nRenovables — ENGIE',
+    title: 'Estructuración PPA\nRenovables .',
     headline: '500 MW contratados',
     color: '#0A8FC7',
-    summary: 'Asesoría integral en estructuración de contratos PPA para proyectos solares y eólicos con ENGIE Perú, el mayor generador privado del país.',
-    scope: 'Diseño y negociación de contratos PPA a 20 años para generación solar y eólica. Análisis de riesgo regulatorio, cláusulas de indexación y mecanismos de garantía ante COES y OSINERGMIN.',
-    results: ['500 MW de energía renovable contratada', 'Estructura PPA reconocida por el COES', 'Reducción 18% en costo tarifario', 'Contrato de 20 años firmado y operativo'],
+    summary: 'Asesoría integral en estructuración de contratos PPA para proyectos solares y eólicos . el mayor generador privado del país.',
+    scope: 'Diseño y negociación de contratos PPA a 20 años para generación solar y eólica. Análisis de riesgo regulatorio, cláusulas de indexación y mecanismos de garantía ante  OSINERGMIN.',
+    results: ['Energía renovable contratada', 'Estructura PPA reconocida por el COES', 'Reducción 18% en costo tarifario', 'Contrato de 20 años firmado y operativo'],
     kpi: { val: '500 MW', label: 'Contratados' },
     links: [
       { label: 'LinkedIn LAEQ', url: 'https://www.linkedin.com/company/luis-espinoza-&-asociados' },
-      { label: 'ENGIE Perú', url: 'https://www.engie-energia.pe' },
+      
     ],
   },
   {
@@ -121,12 +121,12 @@ const PROJECTS = [
     tag: 'Hidrocarburos',
     client: 'PETROPERÚ',
     title: 'Optimización Cadena\nde Suministro — PETROPERÚ',
-    headline: '−15% en costos operativos',
+    headline: 'En costos operativos',
     color: '#E85D5D',
-    summary: 'Análisis y optimización de la cadena de suministro de combustibles líquidos a nivel nacional, logrando una reducción comprobada del 15% en costos operativos para PETROPERÚ.',
+    summary: 'Análisis y optimización de la cadena de suministro de combustibles líquidos a nivel nacional, logrando una reducción comprobada en costos operativos para PETROPERÚ.',
     scope: 'Diagnóstico de la cadena de suministro, identificación de ineficiencias logísticas y tarifarias, diseño de modelo de optimización y rediseño de contratos con proveedores estratégicos en 3 regiones.',
-    results: ['15% reducción en costos operativos', 'Nuevo modelo tarifario implementado', 'Optimización logística en 3 regiones', 'Ahorros anuales proyectados: S/ 12M'],
-    kpi: { val: '−15%', label: 'Reducción costos' },
+    results: ['15% reducción en costos operativos', 'Nuevo modelo tarifario implementado', 'Optimización logística en 3 regiones'],
+    kpi: { val: '−15%', label: 'Optimización Costos' },
     links: [
       { label: 'PETROPERÚ', url: 'https://www.petroperu.com.pe' },
       { label: 'Crisis ducto TGP — La República', url: 'https://larepublica.pe/economia/2026/03/08/un-solo-ducto-paraliza-al-pais-y-expone-la-falta-del-gasoducto-sur-peruano-hnews-645246' },
@@ -141,7 +141,7 @@ const PROJECTS = [
     title: 'Consultoría en Regulación\ny Planificación — MINEM',
     headline: 'Asesoría de alta dirección',
     color: '#0A8FC7',
-    summary: 'Asesoría de regulación energética y planificación estratégica para el Ministerio de Energía y Minas del Perú, continuando el rol de Luis Espinoza como ex Viceministro de Energía.',
+    summary: 'Asesoría de regulación energética y planificación estratégica para el Ministerio de Energía y Minas del Perú, .',
     scope: 'Diseño de marcos normativos para electricidad e hidrocarburos, revisión de política tarifaria, elaboración de planes de largo plazo y asesoría directa en toma de decisiones estratégicas del sector.',
     results: ['Marco normativo eléctrico actualizado', 'Política tarifaria reformada', 'Planes de largo plazo elaborados', 'Asesoría directa al Viceministro'],
     kpi: { val: 'MINEM', label: 'Consultor oficial' },
@@ -737,9 +737,9 @@ const StatsBar = ({ inView }) => (
   >
     {[
       { val: '10+', label: 'Años de trayectoria\ndesde 2014' },
-      { val: '95%', label: 'Tasa de éxito\nprobada' },
-      { val: '10+', label: 'Proyectos\nestructurados' },
-      { val: '500', label: 'Logros y entregables\nprofesionales' },
+      { val: '99%', label: 'Tasa de éxito\nprobada' },
+      { val: '20+', label: 'Proyectos\nestructurados' },
+      { val: '500', label: 'profesionales\nde sector de energía capacitado' },
     ].map((item, i) => (
       <div key={i} style={{ padding: 'clamp(18px,2.5vw,28px)', borderRight: i < 3 ? `1px solid ${T.brand}18` : 'none', background: i % 2 === 0 ? `${T.brand}05` : 'transparent' }}>
         <span style={{ fontFamily: '"Cormorant Garamond",serif', fontWeight: 700, fontSize: 'clamp(26px,3.5vw,44px)', color: T.cyan, lineHeight: 1, letterSpacing: '-0.03em', display: 'block' }}>{item.val}</span>

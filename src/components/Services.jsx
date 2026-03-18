@@ -62,21 +62,21 @@ const SVC = [
     title: 'Contratos PPA\nde Electricidad',
     tag: 'PPA',
     short: 'Asesoría en Power Purchase Agreements y mercado eléctrico.',
-    detail: 'Estructuración de PPAs para proyectos de hasta 500 MW. Análisis de precio, plazo, garantías y riesgos para generadoras, distribuidoras y grandes consumidores. Negociación ante COES y reguladores.',
-    bullets: ['Proyectos hasta 500 MW', 'Análisis de riesgo', 'Negociación ante COES', 'Grandes consumidores'],
-    kpi: { val: '500MW', label: 'Mayor proyecto PPA' },
+    detail: 'Estructuración de PPAs y Análisis de precio, plazo, garantías y riesgos para generadoras, distribuidoras y clientes libres. Segun el marco normativo actual se debe tener Asesorías a partir de 200 kW.',
+    bullets: ['beneficios', 'Asesorías desde 200 kW', '100% de éxito', 'Clientes libres'],
+    kpi: { val: '100+', label: 'Contratos asesorados' },
     icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>,
   },
   {
     id: 'ambiente',
     num: '05',
-    title: 'Medio\nAmbiente',
-    tag: 'Ambiental',
-    short: 'Consultoría ambiental para proyectos energéticos.',
-    detail: 'Gestión ambiental integral: EIA, planes de cierre, certificaciones y cumplimiento normativo ante SENACE y MINEM para proyectos de generación, transmisión e hidrocarburos.',
-    bullets: ['Estudios de Impacto Ambiental', 'Planes de cierre', 'Certificación SENACE', 'Cumplimiento normativo'],
-    kpi: { val: '10+', label: 'Proyectos certificados' },
-    icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.34A1 1 0 0 0 4.72 21C7.38 21 10.18 19.68 12 17c.86-1.23 1.5-2.7 2-4 .5 2.5 1.5 4.5 3 5.8"/><path d="M22 2s-5 2-7 6.5S12 15 12 15"/></svg>,
+    title:'Pericia Técnica –\nSolución de Controversia',
+    tag: 'Pericia Técnica',
+    short: 'Resolución de controversias técnicas en el sector energético.',
+    detail: 'Elaboración de pericias técnicas especializadas para la solución de controversias en el sector eléctrico, gas natural y de hidrocarburos. Sustentación ante OSINERGMIN, COES, Poder Judicial y tribunales arbitrales nacionales e internacionales.',
+    bullets: ['Pericias técnicas especializadas', 'Controversias eléctricas', 'Actuación arbitral', 'Actuación colegiados'],
+    kpi: { val: '27+', label: 'Pericias técnicas' },
+    icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>,
   },
   {
     id: 'combustibles',
@@ -84,9 +84,9 @@ const SVC = [
     title: 'Precios de\nCombustibles Líquidos',
     tag: 'Combustibles',
     short: 'Análisis y regulación de precios de combustibles líquidos.',
-    detail: 'Monitoreo, análisis y asesoría en fijación de precios de combustibles líquidos. Reducción comprobada del 15% en costos de suministro para PETROPERÚ mediante optimización de cadena.',
-    bullets: ['Fijación de precios', 'Cadena de suministro', 'PETROPERÚ: −15% costos', 'Análisis de mercado'],
-    kpi: { val: '−15%', label: 'Reducción costos' },
+    detail: 'Monitoreo, análisis y asesoría en fijación de precios de combustibles líquidos. Reducción del en costos de suministro y proyección mediante optimización de cadena.',
+    bullets: ['Fijación de precios', 'Cadena de suministro', 'Proyección', 'Análisis de mercado'],
+    kpi: { val: '−15%', label: 'Optimización Costos' },
     icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>,
   },
   {
@@ -232,9 +232,9 @@ const Detail = ({ s }) => (
 
       {/* Detail */}
       <p style={{
-        fontFamily: '"DM Sans",sans-serif', fontWeight: 300,
+        fontFamily: '"DM Sans",sans-serif', fontWeight: 400,
         fontSize: 'clamp(13.5px,1.05vw,15.5px)',
-        color: T.muted, lineHeight: 1.85, margin: '0 0 24px',
+        color: 'rgba(200,235,248,0.88)', lineHeight: 1.85, margin: '0 0 24px',
       }}>{s.detail}</p>
 
       {/* Bullets */}
@@ -244,7 +244,7 @@ const Detail = ({ s }) => (
             <div style={{ width: 4, height: 4, background: T.cyan, borderRadius: '50%', flexShrink: 0 }} />
             <span style={{
               fontFamily: '"DM Sans",sans-serif', fontSize: 12,
-              color: T.dim, lineHeight: 1.4,
+              color: 'rgba(184,223,240,0.75)', lineHeight: 1.4,
             }}>{b}</span>
           </div>
         ))}

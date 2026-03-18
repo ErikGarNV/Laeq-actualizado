@@ -123,7 +123,7 @@ const Cursor = () => {
 /* ══════════════════ MENU FULLSCREEN ══════════════════ */
 const NAV = [
   { n: '01', label: 'Servicios',     sub: 'Regulación · Contratos PPA' },
-  { n: '02', label: 'Proyectos',     sub: '10+ casos ejecutados' },
+  { n: '02', label: 'Proyectos',     sub: '20+ casos ejecutados' },
   { n: '03', label: 'Publicaciones', sub: 'Artículos y análisis' },
   { n: '04', label: 'Nosotros',      sub: 'Ex Viceministro y equipo' },
   { n: '05', label: 'Contacto',      sub: 'Agenda una consulta hoy' },
@@ -545,7 +545,7 @@ const Badge = () => (
     >
       <defs><path id="bp" d="M 56 56 m -40 0 a 40 40 0 1 1 80 0 a 40 40 0 1 1 -80 0" /></defs>
       <text fill={T.active + 'CC'} fontSize="7.2" fontFamily="DM Mono,monospace" letterSpacing="3.1">
-        <textPath href="#bp">10+ AÑOS EXPERIENCIA · LAEQ · PERÚ ·</textPath>
+        <textPath href="#bp">20+ AÑOS EXPERIENCIA · LAEQ · PERÚ ·</textPath>
       </text>
     </motion.svg>
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -581,8 +581,8 @@ const Marquee = () => {
 /* ══════════════════ HERO SECTION ══════════════════ */
 const STATS = [
   { val: 10,  suf: '+', label: 'Años de\nexperiencia',      delay: 1.5  },
-  { val: 95,  suf: '%', label: 'Tasa de\néxito',            delay: 1.65 },
-  { val: 10,  suf: '+', label: 'Proyectos\nejecutados',      delay: 1.8  },
+  { val: 99,  suf: '%', label: 'Tasa de\néxito',            delay: 1.65 },
+  { val: 20,  suf: '+', label: 'Proyectos\nejecutados',      delay: 1.8  },
   { val: 500, suf: '+', label: 'Profesionales\ncapacitados', delay: 1.95 },
 ];
 
