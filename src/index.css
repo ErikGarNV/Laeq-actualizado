@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* 1. CONFIGURACIÓN DE IDENTIDAD VISUAL (AZULES Y CELESTES) */
+:root {
+  --laeq-dark: #001D3D;    /* Azul Medianoche (Confianza) */
+  --laeq-blue: #003566;    /* Azul Corporativo (Autoridad) */
+  --laeq-cyan: #00A8E8;    /* Celeste Energía (Innovación) */
+  --laeq-light: #E1EFF6;   /* Blanco Acero (Claridad) */
+}
+
+/* 2. RESET Y COMPORTAMIENTO PREMIUM */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Evita el rebote elástico en móviles y Mac */
+  overscroll-behavior-y: none;
+}
+
+body {
+  background-color: var(--laeq-dark);
+  color: white;
+  /* Suavizado de tipografía para monitores de alta gama */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* 3. TIPOGRAFÍA DE ALTA CONSULTORÍA (AWWWARDS STYLE) */
+/* Asegúrate de tener Fraunces y Geist en tu index.html */
+h1, h2, h3, .font-serif {
+  font-family: 'Fraunces', serif;
+  font-weight: 300; /* Estilo ligero para elegancia */
+  letter-spacing: -0.03em;
+}
+
+p, span, div, button {
+  font-family: 'Geist', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* 4. ARREGLO DEL CONTENEDOR RAIZ */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5. ELEMENTOS DE DISEÑO QUE ATRAEN CLIENTES */
+
+/* Selección de texto personalizada */
+::selection {
+  background-color: var(--laeq-cyan);
+  color: var(--laeq-dark);
+}
+
+/* Barra de scroll minimalista */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--laeq-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 168, 232, 0.4);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--laeq-cyan);
+}
+
+/* Grid de ingeniería sutil para el fondo (Look técnico) */
+.bg-grid-laeq {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* 6. BOTONES DE NIVEL AWWWARDS */
+.cta-button {
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(0, 168, 232, 0.5);
+}
