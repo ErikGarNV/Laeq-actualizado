@@ -755,7 +755,7 @@ const HeroSection = () => {
                 fontSize: 'clamp(13.5px,1.15vw,16.5px)',
                 color: T.muted, lineHeight: 1.8, maxWidth: 355, margin: 0,
               }}>
-                Asesoría especializada en Regulación de Eléctrica y Gas Natural. Asesoría en temas de hidrocarburos.
+                Asesoría especializada en Regulación de la Energía Eléctrica, Gas e Hidrocarburos.
               </p>
 
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
