@@ -755,8 +755,7 @@ const HeroSection = () => {
                 fontSize: 'clamp(13.5px,1.15vw,16.5px)',
                 color: T.muted, lineHeight: 1.8, maxWidth: 355, margin: 0,
               }}>
-                Regulación, contratos PPA y energía renovable para generadoras,
-                distribuidoras e instituciones del sector energético peruano.
+                Asesoría especializada en Regulación de Eléctrica y Gas Natural. Asesoría en temas de hidrocarburos.
               </p>
 
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
