@@ -29,7 +29,7 @@ const SVC = [
     title: 'Regulación de\nGas Natural',
     tag: 'Gas Natural',
     short: 'Marco regulatorio y normativo del sector gas natural.',
-    detail: 'Análisis integral de regulaciones, contratos de transporte y distribución, tarifas reguladas y procedimientos técnicos ante OSINERGMIN y el MINEM para el sector gas natural peruano.',
+    detail: 'Análisis integral en procedimientos tarifarios, asesoría en procesos regulatorios de supervisión, fiscalización y Procedimientos Administrativos Sancionadores (PAS). Asesoría en contratos de transporte y distribución de gas natural para Consumidores Regulados o Independientes. Asesoría en procedimientos técnicos/normativos para el sector gas natural.',
     bullets: ['Regulación tarifaria', 'Contratos de transporte', 'Procedimientos ante OSINERGMIN', 'Normativa distribución'],
     kpi: { val: '10+', label: 'Años en regulación' },
     icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v4l2.5 2.5"/></svg>,
