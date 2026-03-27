@@ -8,6 +8,8 @@ import Clients            from './components/Clients';
 import Nosotros           from './components/Nosotros';
 import Contact            from './components/Contact';
 import LibroReclamaciones from './pages/LibroReclamaciones';
+import PoliticaPrivacidad from './pages/PoliticaPrivacidad';
+import TerminosCondiciones from './pages/TerminosCondiciones';
 
 /* ─── Scroll a la trayectoria en #nosotros ───────── */
 const scrollToTrayectoria = () => {
@@ -117,6 +119,8 @@ const App = () => {
       <Routes>
         <Route path="/"                         element={<MainPage />} />
         <Route path="/libro-de-reclamaciones"   element={<LibroReclamaciones />} />
+        <Route path="/politica-de-privacidad"   element={<PoliticaPrivacidad />} />
+        <Route path="/terminos-y-condiciones"   element={<TerminosCondiciones />} />
       </Routes>
     </BrowserRouter>
   );
