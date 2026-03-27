@@ -579,7 +579,7 @@ const Badge = () => (
 );
 
 /* ══════════════════ MARQUEE ══════════════════ */
-const CL = ['ENGIE Perú', 'PETROPERÚ', 'MINEM', 'Osinergmin', 'Electroperú', 'Luz del Sur', 'Cálidda', 'ProInversión'];
+const CL = ['TÉCNICO', 'LEGAL', 'REGULACIÓN','ENERGÍA', 'FINANCIERO', 'ECONÓMICO', 'GAS NATURAL', 'ELECTRICIDAD', 'HIDROCARBUROS', 'ADMINISTRATIVO', 'TARIFAS', 'PROYECTOS', 'CONTRATOS PPA', 'CONTRATOS GAS NATURAL', 'PROYECCIÓN'];
 const Marquee = () => {
   const all = [...CL, ...CL, ...CL, ...CL];
   return (
