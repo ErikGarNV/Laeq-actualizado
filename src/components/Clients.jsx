@@ -19,9 +19,13 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
   austral-group.jpg · egemsa.jpg
 
   LOGOS TO DOWNLOAD (transparent PNG preferred):
-  calidda.png · luz-del-sur.png · tgp.png · pluspetrol.png · statkraft.png
-  kallpa.png · naturgy.png · proinversion.png · hunt-oil.png · repsol.png
+  calidda.png · luz-del-sur.png · tgp.png · pluspetrol.png
+  kallpa.png · proinversion.png · hunt-oil.png · repsol.png
   esan.png · breca.png
+  zelestra.png · egasa.png · egesur.png · pluz-energia.png · orygen.png
+  celepsa.png · fenix.png · termoselva.png
+  exalmar.png · centinela.png · caraveli.png · veta-dorada.png
+  tasa.png · intursa.png · urbanova.png · la-rioja.png
 */
 
 /* ═══════════════════════════════════════════════
@@ -54,16 +58,22 @@ const CLIENTS = [
   { id:'coes',        name:'COES-SINAC',          sector:'gobierno',   logo:'coes-logo.png',                rel:'Análisis mercado SEIN',           year:'2022', url:'https://www.coes.org.pe',                size:'md' },
   { id:'enel',        name:'Enel Distribución',   sector:'energia',    logo:'Enel_Group_logo.svg.png',      rel:'Mercado eléctrico Lima',          year:'2022', url:'https://www.enel.pe',                    size:'md' },
   { id:'electroperu', name:'Electroperú',         sector:'energia',    logo:'electroperu.jpg',              rel:'Regulación y planificación',      year:'2020', url:'https://www.electroperu.com.pe',         size:'md' },
-  { id:'chalco',      name:'CHALCO',              sector:'industria',  logo:'CHALCO.png',                   rel:'Consultoría energética',          year:'2021', url:'https://www.chalco.com.cn',              size:'sm' },
+  { id:'chalco',      name:'Chinalco',              sector:'industria',  logo:'CHALCO.png',                   rel:'Consultoría energética',          year:'2021', url:'https://www.chalco.com.cn',              size:'sm' },
   { id:'egemsa',      name:'EGEMSA',              sector:'energia',    logo:'egemsa.jpg',                   rel:'Hidroeléctricas',                 year:'2020', url:'https://www.egemsa.com.pe',              size:'sm' },
   { id:'calidda',     name:'Cálidda',             sector:'energia',    logo:'calidda.png',                  rel:'Gas natural Lima',                year:'2021', url:'https://www.calidda.com.pe',             size:'md' },
   { id:'tgp',         name:'TGP',                 sector:'energia',    logo:'tgp.png',                      rel:'Gas Camisea',                     year:'2020', url:'https://www.tgp.com.pe',                 size:'md' },
   { id:'pluspetrol',  name:'Pluspetrol',          sector:'energia',    logo:'pluspetrol.png',               rel:'E&P hidrocarburos',               year:'2021', url:'https://www.pluspetrol.net',             size:'sm' },
   { id:'repsol',      name:'Repsol Perú',         sector:'energia',    logo:'repsol.png',                   rel:'Normativa hidrocarburos',         year:'2020', url:'https://www.repsol.com/es/peru',         size:'sm' },
   { id:'huntoil',     name:'Hunt Oil',            sector:'energia',    logo:'hunt-oil.png',                 rel:'Contratos gas natural',           year:'2019', url:'https://www.huntoil.com',                size:'sm' },
-  { id:'naturgy',     name:'Naturgy',             sector:'energia',    logo:'naturgy.png',                  rel:'Gas distribución Lima',           year:'2020', url:'https://www.naturgy.pe',                 size:'sm' },
-  { id:'statkraft',   name:'Statkraft Perú',      sector:'energia',    logo:'statkraft.png',                rel:'Proyectos hidroeléctricos',       year:'2022', url:'https://www.statkraft.com',              size:'sm' },
   { id:'kallpa',      name:'Kallpa Generación',   sector:'energia',    logo:'kallpa.png',                   rel:'PPA mercado eléctrico',           year:'2021', url:'https://www.kallpageneracion.com.pe',    size:'sm' },
+  { id:'zelestra',    name:'ZELESTRA',            sector:'energia',    logo:'zelestra.png',                 rel:'Energía renovable',               year:'2023', url:'#',                                      size:'sm' },
+  { id:'egasa',       name:'EGASA',               sector:'energia',    logo:'egasa.png',                    rel:'Generación eléctrica sur',        year:'2022', url:'#',                                      size:'sm' },
+  { id:'egesur',      name:'EGESUR',              sector:'energia',    logo:'egesur.png',                   rel:'Generación eléctrica',            year:'2022', url:'#',                                      size:'sm' },
+  { id:'pluzenergia', name:'PLUZ ENERGÍA',        sector:'energia',    logo:'pluz-energia.png',             rel:'Distribución eléctrica',          year:'2023', url:'#',                                      size:'sm' },
+  { id:'orygen',      name:'ORYGEN',              sector:'energia',    logo:'orygen.png',                   rel:'Energía renovable',               year:'2023', url:'#',                                      size:'sm' },
+  { id:'celepsa',     name:'CELEPSA',             sector:'energia',    logo:'celepsa.png',                  rel:'Generación hidroeléctrica',       year:'2021', url:'#',                                      size:'sm' },
+  { id:'fenix',       name:'FÉNIX',               sector:'energia',    logo:'fenix.png',                    rel:'Generación termoeléctrica',       year:'2022', url:'#',                                      size:'sm' },
+  { id:'termoselva',  name:'TERMOSELVA',          sector:'energia',    logo:'termoselva.png',               rel:'Generación a gas natural',        year:'2021', url:'#',                                      size:'sm' },
   { id:'proinversion',name:'ProInversión',        sector:'gobierno',   logo:'proinversion.png',             rel:'Proyectos energéticos',           year:'2020', url:'https://www.proinversion.gob.pe',        size:'md' },
   // INDUSTRIA
   { id:'siderperu',   name:'SIDERPERÚ',           sector:'industria',  logo:'siderperu.jpg',                rel:'Energía siderúrgica',             year:'2021', url:'https://www.siderperu.com.pe',           size:'md' },
@@ -81,6 +91,14 @@ const CLIENTS = [
   { id:'aib',         name:'AIB Agroindustrias',  sector:'industria',  logo:'ajaib-agroindustrias.jpg',     rel:'Energía sector agrícola',         year:'2020', url:'#',                                      size:'sm' },
   { id:'pdiamante',   name:'Pesquera Diamante',   sector:'industria',  logo:'pesquera-diamante.jpg',        rel:'Energía sector pesquero',         year:'2021', url:'https://www.diamante.com.pe',            size:'sm' },
   { id:'austral',     name:'Austral Group',       sector:'industria',  logo:'austral-group.jpg',            rel:'Energía pesquera',                year:'2021', url:'https://www.austral.com.pe',             size:'sm' },
+  { id:'exalmar',     name:'Pesquera Exalmar',    sector:'industria',  logo:'exalmar.png',                  rel:'Energía sector pesquero',         year:'2022', url:'https://www.exalmar.com.pe',             size:'sm' },
+  { id:'centinela',   name:'Pesquera Centinela',  sector:'industria',  logo:'centinela.png',                rel:'Energía sector pesquero',         year:'2022', url:'#',                                      size:'sm' },
+  { id:'caraveli',    name:'Cía. Minera Caravelí',sector:'industria',  logo:'caraveli.png',                 rel:'Energía sector minero',           year:'2023', url:'#',                                      size:'sm' },
+  { id:'vetadorada',  name:'Minera Veta Dorada',  sector:'industria',  logo:'veta-dorada.png',              rel:'Energía sector minero',           year:'2023', url:'#',                                      size:'sm' },
+  { id:'tasa',        name:'TASA',                sector:'industria',  logo:'tasa.png',                     rel:'Energía sector pesquero',         year:'2022', url:'https://www.tasa.com.pe',                size:'sm' },
+  { id:'intursa',     name:'INTURSA',             sector:'industria',  logo:'intursa.png',                  rel:'Gestión energética',              year:'2022', url:'#',                                      size:'sm' },
+  { id:'urbanova',    name:'URBANOVA',            sector:'industria',  logo:'urbanova.png',                 rel:'Eficiencia energética',           year:'2023', url:'#',                                      size:'sm' },
+  { id:'larioja',     name:'Inversiones La Rioja',sector:'industria',  logo:'la-rioja.png',                 rel:'Consultoría energética',          year:'2023', url:'#',                                      size:'sm' },
   // UNIVERSIDAD
   { id:'esan',        name:'ESAN',                sector:'universidad',logo:'esan.png',                     rel:'Docente 5 programas activos',     year:'2014–2024', url:'https://www.esan.edu.pe',            size:'lg' },
 ];
