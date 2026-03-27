@@ -184,9 +184,9 @@ const PROJECTS = [
     title: 'Programas de Capacitación\nSectorial — 10 Años',
     headline: '500+ profesionales formados',
     color: '#7B5CF0',
-    summary: 'Programas continuos de capacitación en regulación energética, gas natural, PPA y energías renovables para empresas del sector. Docente en ESAN y conferencista en los principales foros del sector.',
-    scope: 'Diseño e impartición de cursos in-house, diplomas de especialización en ESAN (Gas Natural, Energías Renovables, Gestión de la Energía), talleres para ENGIE, Cálidda y entidades públicas.',
-    results: ['500+ profesionales capacitados', 'Docente ESAN — 5 programas activos', 'In-house: ENGIE, Cálidda, Luz del Sur', 'Conferencista CONIMERA 2023 — CIP Lima'],
+    summary: 'Programas continuos de capacitación en regulación energética, gas natural, PPA y energías renovables para empresas del sector.',
+    scope: 'Diseño e impartición de cursos in-house, para entidades públicas y privadas.',
+    results: ['500+ profesionales capacitados', 'Cursos especializados', 'In-house. Cursos', 'Conferencista '],
     kpi: { val: '500+', label: 'Profesionales' },
     links: [
       { label: 'ESAN — Luis Espinoza', url: 'https://www.esan.edu.pe/directorio/luis-espinoza-quinones' },
@@ -204,7 +204,7 @@ const PROJECTS = [
     color: '#D4830A',
     summary: 'Exposición sobre la viabilidad, costos y evolución de la coexistencia del gas natural con energías renovables en la matriz energética peruana. XIV Conferencia Gas Natural Perú 2025.',
     scope: 'Análisis técnico-económico de escenarios de integración RER en el SEIN, reservas de gas natural Camisea, propuestas regulatorias para masificación y evaluación del rol del Gasoducto Sur Peruano.',
-    results: ['Expositor XIV Conferencia GN 2025', 'Análisis reservas Camisea 15 años', 'Propuesta masificación con Ley tarifa nivelada', 'Recomendaciones Gasoducto Sur Peruano'],
+    results: ['Expositor XIV Conferencia GN 2025', 'Análisis reservas Camisea', 'Propuesta masificación con Ley tarifa nivelada', 'Recomendaciones Gasoducto Sur Peruano'],
     kpi: { val: '2025', label: 'Conferencia Gas Natural' },
     links: [
       { label: 'XIV Conferencia Gas Natural', url: 'https://doblet.com.pe/conferencia-gas-natural-peru/' },

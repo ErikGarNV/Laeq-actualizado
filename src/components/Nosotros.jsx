@@ -51,7 +51,7 @@ const TEAM = [
     nameShort: 'Luis Alberto\nEspinoza',
     role: 'Fundador & Director General',
     formation: 'Ing. Mecánico Electricista · UNI  /  MBA · ESAN',
-    bio: 'Más de 25 años liderando proyectos en el sector energético peruano. Arquitecto de políticas regulatorias, contratos PPA hasta 500 MW y planes estratégicos de alcance nacional con impacto directo en 150,000 beneficiarios.',
+    bio: 'Más de 25 años liderando proyectos en el sector energético peruano. Arquitecto de políticas regulatorias, contratos PPA hasta 500 MW y planes estratégicos de alcance nacional.',
     expertise: [
       { label: 'Regulación eléctrica',    pct: 100 },
       { label: 'Contratos de energía',    pct: 100},
@@ -67,9 +67,9 @@ const TEAM = [
     initials: 'AC',
     name: 'Alexandra Ching Espinosa',
     nameShort: 'Alexandra\nChing Espinosa',
-    role: 'Directora Legal & Regulatoria',
+    role: 'Especialista Legal',
     formation: 'Abogada · USMP  /  Maestría Finanzas & Derecho Corp. · ESAN',
-    bio: '12 años especializados en regulación energética y contratos de gas natural. Referente en controversias ante OSINERGMIN y COES, con más de 27 pericias técnicas que resolvieron disputas de alta complejidad para el sector.',
+    bio: '15 años especializados en regulación eléctrica y gas natural. Asesora en procedimientos regulatorios tarifarios, de supervisión y fiscalización. Especialista en mercado de la electricidad y gas natural. Especialista en PPAs.',
     expertise: [
       { label: 'Derecho energético',     pct: 100},
       { label: 'Contratos gas natural',  pct: 100},
@@ -77,7 +77,7 @@ const TEAM = [
       { label: 'Regulación OSINERGMIN',  pct: 100 },
     ],
     tags: ['Regulación','Derecho Energético','Contratos','COES'],
-    stat: { val: '27+', label: 'pericias técnicas' },
+    stat: { val: '15+', label: 'años de experiencia' },
     color: T.active,
   },
 ];
@@ -107,9 +107,9 @@ const TIMELINE = [
   { year: '2014', title: 'Fundación',                            desc: 'El Ing. Luis Espinoza Quiñones funda LAEQ & Asociados con foco en desarrollo de mercados energéticos en el Perú.',                           kpi: 'Año 0',          highlight: true  },
   { year: '2015', title: 'Gas Natural & Regulación',             desc: 'Incorporación de servicios en regulación de gas natural, contratos de transporte y distribución ante OSINERGMIN y el MINEM.',                kpi: '2 servicios',    highlight: false },
   { year: '2017', title: 'Plan de Electrificación Rural',        desc: 'Co-diseño del Plan Nacional de Electrificación Rural con el Ministerio de Energía y Minas. Impacto: 150,000 beneficiarios.',               kpi: '150K benefic.',  highlight: true  },
-  { year: '2019', title: 'Consolidación del Equipo Directivo',   desc: 'Se incorpora Alexandra Ching Espinosa como Directora Legal & Regulatoria. Superamos los 50 clientes activos.',                             kpi: '50+ clientes',   highlight: false },
+  { year: '2015', title: 'Consolidación del Equipo Directivo',   desc: 'Se incorpora Alexandra Ching Espinosa como Especialista Legal. Superamos los 50 clientes activos.',                             kpi: '50+ clientes',   highlight: false },
   { year: '2021', title: 'PPA & Energías Renovables',            desc: 'Estructuración de PPAs para proyectos hasta 500 MW. Asesoría integral en energía solar y eólica con ENGIE Perú y clientes libres.',         kpi: '500 MW',         highlight: true  },
-  { year: '2023', title: 'Pericia Técnica & Controversias',      desc: 'Liderazgo en resolución de controversias: más de 27 pericias técnicas ante OSINERGMIN, COES y tribunales arbitrales.',                       kpi: '27+ pericias',   highlight: false },
+  { year: '2023', title: 'Pericia Técnica & Controversias',      desc: 'Liderazgo en resolución de controversias: más de 27 Contratos de Suministro de Electricidad ante OSINERGMIN, COES y tribunales arbitrales.',                       kpi: '27+ pericias',   highlight: false },
   { year: '2025', title: '11 Años · Referente Nacional',         desc: 'Más de 100 proyectos completados, 95% tasa de éxito y 500+ profesionales capacitados. Líderes del sector energético peruano.',               kpi: '100+ proyectos', highlight: true  },
 ];
 
