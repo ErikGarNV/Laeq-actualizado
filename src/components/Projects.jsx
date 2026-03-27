@@ -43,7 +43,7 @@ const PROJECTS = [
     headline: '500 MW contratados',
     color: '#0A8FC7',
     summary: 'Asesoría integral en estructuración de contratos PPA para proyectos solares y eólicos.',
-    scope: 'Diseño y negociación de contratos PPA . Análisis de riesgo regulatorio, cláusulas de indexación y mecanismos de garantía ante  OSINERGMIN.',
+    scope: 'Diseño y negociación de contratos PPA. Análisis de riesgo regulatorio, cláusulas de indexación y mecanismos de garantía ante  OSINERGMIN.',
     results: ['Energía renovable contratada', 'Estructura PPA ', '50% de costos de energia', 'Reduccion de riesgos regulatorios'],
     kpi: { val: '500 MW', label: 'Contratados' },
     links: [
@@ -132,8 +132,8 @@ const PROJECTS = [
     headline: 'En costos operativos',
     color: '#D94F4F',
     summary: 'Análisis y optimización de la cadena de suministro de combustibles líquidos a nivel nacional, logrando una reducción comprobada en costos operativos para PETROPERÚ.',
-    scope: 'Diagnóstico de la cadena de suministro, identificación de ineficiencias logísticas y tarifarias, diseño de modelo de optimización y rediseño de contratos con proveedores estratégicos en 3 regiones.',
-    results: ['15% reducción en costos operativos', 'Nuevo modelo tarifario implementado', 'Optimización logística en 3 regiones'],
+    scope: 'Diagnóstico de la cadena de suministro, identificación de ineficiencias logísticas y tarifarias, diseño de modelo de optimización y rediseño de contratos con proveedores estratégicos.',
+    results: ['15% reducción en costos operativos', 'Nuevo modelo tarifario implementado'],
     kpi: { val: '−15%', label: 'Optimización Costos' },
     links: [
       { label: 'PETROPERÚ', url: 'https://www.petroperu.com.pe' },
