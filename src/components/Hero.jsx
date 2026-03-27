@@ -12,24 +12,26 @@ import logoLaeq from '../assets/logo-laeq.jpg';
   ─── FONTS (index.html <head>) ──────────────────────────────────────────
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,600;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  ─── Z-INDEX MAP (never conflicts) ──────────────────────────────────────
-  hero content     → z: 10
-  hero overlays    → z: 3–6
-  header           → z: 80   (visible above hero, below menu)
-  menu fullscreen  → z: 500  (covers EVERYTHING)
-  cursor           → z: 9000 (always on top)
 */
 
-/* ══════════════════ TOKENS ══════════════════ */
+/* ══════════════════ TOKENS — WHITE/BLUE PALETTE ══════════════════
+   Awwwards-grade: fondo blanco porcelana → transiciones a azul profundo
+   Acento: azul eléctrico sobre superficies claras, no sobre oscuras.
+*/
 const T = {
-  bg:       '#020C18',
-  bgMid:    '#041828',
-  brand:    '#02537E',
-  active:   '#0A8FC7',
-  cyan:     '#1EB8F0',
-  white:    '#E8F4FC',
-  muted:    'rgba(184,223,240,0.38)',
+  bg:       '#F4F7FB',          /* blanco porcelana — fondo principal */
+  bgMid:    '#EAF0F8',          /* blanco azulado — transición */
+  bgDeep:   '#D6E4F2',          /* blue-tint — bordes, separadores */
+  bgPanel:  '#FFFFFF',          /* panel puro — cards, superficies elevadas */
+  brand:    '#02537E',          /* azul LAEQ — brand primario */
+  active:   '#0A8FC7',          /* azul medio — elementos activos */
+  cyan:     '#0077B6',          /* azul eléctrico — acento principal */
+  cyanLight:'#1EB8F0',          /* azul vivo — highlight puntual */
+  ink:      '#0D2B4E',          /* casi-negro azulado — texto principal */
+  muted:    'rgba(2,83,126,0.55)', /* texto secundario */
+  dim:      'rgba(2,83,126,0.28)', /* texto terciario */
+  line:     'rgba(2,83,126,0.14)', /* bordes */
+  lineStrong:'rgba(2,83,126,0.28)',
 };
 
 /* ease */
@@ -95,7 +97,7 @@ const Cursor = () => {
           transition={{ duration: 0.3, ease: SILK }}
           style={{
             borderRadius: '50%',
-            border: `1px solid ${hasLabel ? T.cyan : 'rgba(30,184,240,0.35)'}`,
+            border: `1px solid ${hasLabel ? T.cyan : T.brand + '55'}`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 8, color: T.cyan, letterSpacing: '0.1em',
             fontFamily: '"DM Mono",monospace', textTransform: 'uppercase',
@@ -109,7 +111,7 @@ const Cursor = () => {
         style={{
           position: 'fixed', top: 0, left: 0, zIndex: 9001,
           width: 7, height: 7, borderRadius: '50%',
-          background: hasLabel ? T.white : T.cyan,
+          background: hasLabel ? T.ink : T.cyan,
           pointerEvents: 'none',
           x: mx, y: my,
           translateX: '-50%', translateY: '-50%',
@@ -156,7 +158,7 @@ const MenuLink = ({ n, label, sub, i, onClose }) => {
       data-c="ir"
       style={{
         listStyle: 'none',
-        borderBottom: `1px solid ${hov ? T.brand + '66' : 'rgba(2,83,126,0.18)'}`,
+        borderBottom: `1px solid ${hov ? T.lineStrong : T.line}`,
         padding: 'clamp(10px,1.6vh,18px) 0',
         cursor: 'pointer',
         transition: 'border-color 0.3s',
@@ -166,7 +168,7 @@ const MenuLink = ({ n, label, sub, i, onClose }) => {
         {/* number */}
         <span style={{
           fontFamily: '"DM Mono",monospace', fontSize: 10,
-          color: hov ? T.cyan : T.brand + '88',
+          color: hov ? T.cyan : T.dim,
           transition: 'color 0.3s', minWidth: 26, flexShrink: 0,
         }}>{n}</span>
 
@@ -179,7 +181,7 @@ const MenuLink = ({ n, label, sub, i, onClose }) => {
             fontWeight: 600,
             fontSize: 'clamp(36px,5.8vw,80px)',
             lineHeight: 0.95, letterSpacing: '-0.02em',
-            color: hov ? T.cyan : T.white,
+            color: hov ? T.cyan : T.ink,
             transition: 'color 0.3s',
             display: 'block',
           }}
@@ -212,34 +214,33 @@ const Menu = ({ onClose }) => (
     exit={{ clipPath: 'inset(0 0 100% 0)' }}
     transition={{ duration: 0.75, ease: EXPO }}
     style={{
-      /* ← covers EVERYTHING — position:fixed + inset:0 + high zIndex */
       position: 'fixed', inset: 0, zIndex: 500,
-      background: T.bg,
+      background: T.bgPanel,
       display: 'flex', flexDirection: 'column',
       overflow: 'hidden',
     }}
   >
-    {/* noise */}
+    {/* subtle noise */}
     <div style={{
-      position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, opacity: 0.025,
+      position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, opacity: 0.018,
       backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
       backgroundSize: '220px 220px',
     }} />
 
-    {/* brand glow */}
+    {/* brand glow — muy sutil en claro */}
     <div style={{
       position: 'absolute', right: '-10%', top: '-10%',
       width: '50vw', height: '60vh', pointerEvents: 'none', zIndex: 0,
-      background: `radial-gradient(ellipse, ${T.brand}22 0%, transparent 65%)`,
+      background: `radial-gradient(ellipse, ${T.active}0D 0%, transparent 65%)`,
     }} />
 
-    {/* ── TOP BAR: logo left + close right ── */}
+    {/* ── TOP BAR ── */}
     <div style={{
       position: 'relative', zIndex: 2, flexShrink: 0,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       height: 72,
       padding: '0 clamp(20px,5vw,80px)',
-      borderBottom: `1px solid rgba(2,83,126,0.15)`,
+      borderBottom: `1px solid ${T.line}`,
     }}>
       <motion.div
         initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }}
@@ -249,15 +250,14 @@ const Menu = ({ onClose }) => (
         <img src={logoLaeq} alt="LAEQ"
           style={{
             height: 44, width: 'auto', objectFit: 'contain',
-            filter: `drop-shadow(0 0 12px ${T.cyan}55)`,
             display: 'block',
           }}
         />
         <div>
-          <p style={{ fontFamily: '"DM Sans",sans-serif', fontWeight: 600, fontSize: 13, color: T.white, margin: 0 }}>
+          <p style={{ fontFamily: '"DM Sans",sans-serif', fontWeight: 600, fontSize: 13, color: T.ink, margin: 0 }}>
             LAEQ & Asociados
           </p>
-          <p style={{ fontFamily: '"DM Mono",monospace', fontSize: 8.5, color: T.active + '77', margin: 0, textTransform: 'uppercase', letterSpacing: '0.24em' }}>
+          <p style={{ fontFamily: '"DM Mono",monospace', fontSize: 8.5, color: T.muted, margin: 0, textTransform: 'uppercase', letterSpacing: '0.24em' }}>
             Mercados Energéticos
           </p>
         </div>
@@ -268,21 +268,21 @@ const Menu = ({ onClose }) => (
         transition={{ delay: 0.25, duration: 0.4 }}
         onClick={onClose} data-c="cerrar"
         style={{
-          background: 'none', border: `1px solid rgba(30,184,240,0.2)`,
+          background: 'none', border: `1px solid ${T.line}`,
           width: 52, height: 52, cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           flexShrink: 0, transition: 'border-color 0.3s, background 0.3s',
         }}
-        onMouseEnter={e => { e.currentTarget.style.borderColor = T.cyan; e.currentTarget.style.background = T.cyan + '14'; }}
-        onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(30,184,240,0.2)'; e.currentTarget.style.background = 'none'; }}
+        onMouseEnter={e => { e.currentTarget.style.borderColor = T.cyan; e.currentTarget.style.background = T.cyan + '0F'; }}
+        onMouseLeave={e => { e.currentTarget.style.borderColor = T.line; e.currentTarget.style.background = 'none'; }}
       >
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke={T.cyan} strokeWidth="1.3">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke={T.brand} strokeWidth="1.3">
           <path d="M1 1l13 13M14 1L1 14" />
         </svg>
       </motion.button>
     </div>
 
-    {/* ── CONTENT: links + right panel ── */}
+    {/* ── CONTENT ── */}
     <div style={{
       flex: 1, position: 'relative', zIndex: 1,
       display: 'flex', overflow: 'hidden',
@@ -305,19 +305,23 @@ const Menu = ({ onClose }) => (
       <div className="menu-right" style={{
         width: '32%', flexShrink: 0,
         position: 'relative', overflow: 'hidden',
-        borderLeft: `1px solid rgba(2,83,126,0.15)`,
+        borderLeft: `1px solid ${T.line}`,
+        background: T.bgMid,
       }}>
         <img src={bgInfra} alt=""
           style={{
             width: '100%', height: '100%', objectFit: 'cover',
             objectPosition: 'center 40%',
-            filter: `grayscale(25%) brightness(0.28) contrast(1.15)`,
+            filter: `grayscale(100%) brightness(0.06) contrast(1.1)`,
             display: 'block',
+            mixBlendMode: 'multiply',
+            opacity: 0.18,
           }}
         />
+        {/* Blue tint overlay */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: `linear-gradient(90deg, ${T.bg} 0%, transparent 35%, ${T.bg}44 100%)`,
+          background: `linear-gradient(135deg, ${T.active}22 0%, ${T.bgMid} 100%)`,
         }} />
 
         {/* Bottom info */}
@@ -334,13 +338,13 @@ const Menu = ({ onClose }) => (
           }} />
           <p style={{
             fontFamily: '"Cormorant Garamond",serif', fontStyle: 'italic',
-            fontSize: 16, color: T.white + 'AA', margin: 0, lineHeight: 1.5,
+            fontSize: 16, color: T.brand, margin: 0, lineHeight: 1.5,
           }}>
             "Desarrollamos soluciones estratégicas para el mercado energético peruano."
           </p>
           <span style={{
             fontFamily: '"DM Mono",monospace', fontSize: 9,
-            color: T.active + '66', textTransform: 'uppercase', letterSpacing: '0.2em',
+            color: T.muted, textTransform: 'uppercase', letterSpacing: '0.2em',
             display: 'block', marginTop: 10,
           }}>Luis A. Espinoza Quiñones</span>
         </motion.div>
@@ -354,7 +358,7 @@ const Menu = ({ onClose }) => (
       style={{
         position: 'relative', zIndex: 2, flexShrink: 0,
         padding: '16px clamp(20px,5vw,80px)',
-        borderTop: `1px solid rgba(2,83,126,0.15)`,
+        borderTop: `1px solid ${T.line}`,
         display: 'flex', flexWrap: 'wrap',
         justifyContent: 'space-between', alignItems: 'center', gap: 12,
       }}
@@ -364,18 +368,18 @@ const Menu = ({ onClose }) => (
           <span key={s} data-c=""
             style={{
               fontFamily: '"DM Sans",sans-serif', fontSize: 10,
-              color: T.muted, opacity: 0.5,
+              color: T.dim,
               textTransform: 'uppercase', letterSpacing: '0.18em', cursor: 'pointer',
-              transition: 'opacity 0.25s, color 0.25s',
+              transition: 'color 0.25s',
             }}
-            onMouseEnter={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.color = T.cyan; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = '0.5'; e.currentTarget.style.color = T.muted; }}
+            onMouseEnter={e => { e.currentTarget.style.color = T.cyan; }}
+            onMouseLeave={e => { e.currentTarget.style.color = T.dim; }}
           >{s}</span>
         ))}
       </div>
       <span style={{
         fontFamily: '"DM Mono",monospace', fontSize: 9,
-        color: T.active + '55', letterSpacing: '0.16em',
+        color: T.dim, letterSpacing: '0.16em',
       }}>Lima, Perú · Est. 2000</span>
     </motion.div>
   </motion.div>
@@ -396,40 +400,34 @@ const Header = ({ menuOpen, onToggle }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: SILK }}
       style={{
-        /* z:80 — visible over hero, but BELOW menu (z:500) */
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 80,
         height: 70,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 clamp(20px,5vw,80px)',
         background: scrolled
-          ? 'rgba(2,12,24,0.88)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(22px) saturate(1.5)' : 'none',
-        borderBottom: scrolled ? `1px solid rgba(2,83,126,0.15)` : '1px solid transparent',
+          ? 'rgba(244,247,251,0.92)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(22px) saturate(1.4)' : 'none',
+        borderBottom: scrolled ? `1px solid ${T.line}` : '1px solid transparent',
         transition: 'background 0.5s, border-color 0.5s, backdrop-filter 0.5s',
       }}
     >
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
         <img src={logoLaeq} alt="LAEQ"
-          style={{
-            height: 44, width: 'auto', objectFit: 'contain',
-            filter: `drop-shadow(0 0 10px ${T.cyan}44)`,
-          }}
+          style={{ height: 44, width: 'auto', objectFit: 'contain' }}
         />
         <div>
-          <p style={{ fontFamily: '"DM Sans",sans-serif', fontWeight: 600, fontSize: 12.5, color: T.white, margin: 0, lineHeight: 1.25 }}>
+          <p style={{ fontFamily: '"DM Sans",sans-serif', fontWeight: 600, fontSize: 12.5, color: T.ink, margin: 0, lineHeight: 1.25 }}>
             LAEQ & Asociados
           </p>
-          <p style={{ fontFamily: '"DM Mono",monospace', fontSize: 8.5, color: T.active + '77', margin: 0, textTransform: 'uppercase', letterSpacing: '0.24em' }}>
+          <p style={{ fontFamily: '"DM Mono",monospace', fontSize: 8.5, color: T.muted, margin: 0, textTransform: 'uppercase', letterSpacing: '0.24em' }}>
             Mercados Energéticos
           </p>
         </div>
       </div>
 
-      {/* Right: menu toggle only */}
+      {/* Right */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-
-        {/* CTA — hidden on small screens */}
         <motion.button
           whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
           data-c="consulta"
@@ -441,12 +439,12 @@ const Header = ({ menuOpen, onToggle }) => {
             border: `1px solid ${T.brand}`,
             cursor: 'pointer',
             fontFamily: '"DM Sans",sans-serif', fontWeight: 600,
-            fontSize: 10.5, color: T.cyan,
+            fontSize: 10.5, color: T.brand,
             textTransform: 'uppercase', letterSpacing: '0.22em',
             transition: 'all 0.28s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = T.cyan; e.currentTarget.style.color = T.bg; e.currentTarget.style.borderColor = T.cyan; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = T.cyan; e.currentTarget.style.borderColor = T.brand; }}
+          onMouseEnter={e => { e.currentTarget.style.background = T.cyan; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = T.cyan; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = T.brand; e.currentTarget.style.borderColor = T.brand; }}
         >
           Consulta
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -454,7 +452,7 @@ const Header = ({ menuOpen, onToggle }) => {
           </svg>
         </motion.button>
 
-        {/* Hamburger — always visible */}
+        {/* Hamburger */}
         <button
           onClick={onToggle} data-c="menú"
           style={{
@@ -466,17 +464,17 @@ const Header = ({ menuOpen, onToggle }) => {
           <motion.span
             animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 7 : 0 }}
             transition={{ duration: 0.35, ease: EXPO }}
-            style={{ display: 'block', height: 1.5, width: 26, background: T.cyan, transformOrigin: 'center' }}
+            style={{ display: 'block', height: 1.5, width: 26, background: T.brand, transformOrigin: 'center' }}
           />
           <motion.span
             animate={{ opacity: menuOpen ? 0 : 1, scaleX: menuOpen ? 0 : 0.6 }}
             transition={{ duration: 0.2 }}
-            style={{ display: 'block', height: 1.5, width: 26, background: T.cyan, transformOrigin: 'left' }}
+            style={{ display: 'block', height: 1.5, width: 26, background: T.brand, transformOrigin: 'left' }}
           />
           <motion.span
             animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -7 : 0 }}
             transition={{ duration: 0.35, ease: EXPO }}
-            style={{ display: 'block', height: 1.5, width: 26, background: T.cyan, transformOrigin: 'center' }}
+            style={{ display: 'block', height: 1.5, width: 26, background: T.brand, transformOrigin: 'center' }}
           />
         </button>
       </div>
@@ -484,21 +482,22 @@ const Header = ({ menuOpen, onToggle }) => {
   );
 };
 
-/* ══════════════════ PARTICLES ══════════════════ */
+/* ══════════════════ PARTICLES ══════════════════
+   En paleta clara: partículas azules muy sutiles
+*/
 const Particles = () => (
   <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', overflow: 'hidden' }}>
     {Array.from({ length: 16 }).map((_, i) => {
       const size = 1 + Math.random() * 2.2;
       return (
         <motion.div key={i}
-          animate={{ y: [0, -(70 + Math.random() * 90)], x: [0, -24 + Math.random() * 48], opacity: [0, 0.5, 0] }}
+          animate={{ y: [0, -(70 + Math.random() * 90)], x: [0, -24 + Math.random() * 48], opacity: [0, 0.18, 0] }}
           transition={{ duration: 5 + Math.random() * 7, delay: Math.random() * 5, repeat: Infinity, ease: 'easeOut' }}
           style={{
             position: 'absolute',
             left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`,
             width: size, height: size, borderRadius: '50%',
             background: [T.cyan, T.active, T.brand][i % 3],
-            boxShadow: `0 0 ${size * 3}px ${[T.cyan, T.active, T.brand][i % 3]}`,
           }}
         />
       );
@@ -523,7 +522,7 @@ const Stat = ({ val, suf, label, delay }) => {
         }}>{n}</span>
         <span style={{
           fontFamily: '"Cormorant Garamond",serif', fontWeight: 700,
-          fontSize: 'clamp(20px,2.6vw,34px)', color: T.active + 'BB', lineHeight: 1, marginBottom: 4,
+          fontSize: 'clamp(20px,2.6vw,34px)', color: T.active, lineHeight: 1, marginBottom: 4,
         }}>{suf}</span>
       </div>
       <span style={{
@@ -536,21 +535,45 @@ const Stat = ({ val, suf, label, delay }) => {
 
 /* ══════════════════ ROTATING BADGE ══════════════════ */
 const Badge = () => (
-  <div style={{ width: 112, height: 112, position: 'relative' }}>
+  <div style={{ width: 120, height: 120, position: 'relative' }}>
+    {/* Outer glow ring */}
+    <div style={{
+      position: 'absolute', inset: -6,
+      borderRadius: '50%',
+      background: `radial-gradient(circle, ${T.active}18 0%, transparent 70%)`,
+      pointerEvents: 'none',
+    }} />
+    {/* Rotating text path */}
     <motion.svg
       animate={{ rotate: 360 }}
       transition={{ repeat: Infinity, duration: 18, ease: 'linear' }}
-      viewBox="0 0 112 112" fill="none"
+      viewBox="0 0 120 120" fill="none"
       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
     >
-      <defs><path id="bp" d="M 56 56 m -40 0 a 40 40 0 1 1 80 0 a 40 40 0 1 1 -80 0" /></defs>
-      <text fill={T.active + 'CC'} fontSize="7.2" fontFamily="DM Mono,monospace" letterSpacing="3.1">
+      <defs><path id="bp" d="M 60 60 m -44 0 a 44 44 0 1 1 88 0 a 44 44 0 1 1 -88 0" /></defs>
+      <text fill={T.brand} fontSize="7.4" fontFamily="DM Mono,monospace" letterSpacing="3.2" opacity="0.75">
         <textPath href="#bp">20+ AÑOS EXPERIENCIA · LAEQ · PERÚ ·</textPath>
       </text>
     </motion.svg>
-    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <span style={{ fontFamily: '"Cormorant Garamond",serif', fontWeight: 700, fontSize: 30, color: T.cyan, lineHeight: 1, textShadow: `0 0 20px ${T.cyan}66` }}>10</span>
-      <span style={{ fontFamily: '"DM Mono",monospace', fontSize: 7.5, color: T.active + '88', textTransform: 'uppercase', letterSpacing: '0.18em' }}>años+</span>
+    {/* Inner circle */}
+    <div style={{
+      position: 'absolute', inset: 10,
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      background: 'rgba(255,255,255,0.92)',
+      borderRadius: '50%',
+      border: `1.5px solid ${T.active}44`,
+      backdropFilter: 'blur(8px)',
+      boxShadow: `0 4px 24px rgba(10,143,199,0.14), inset 0 1px 0 rgba(255,255,255,0.9)`,
+    }}>
+      <span style={{
+        fontFamily: '"Cormorant Garamond",serif', fontWeight: 700,
+        fontSize: 32, color: T.cyan, lineHeight: 1,
+      }}>10</span>
+      <span style={{
+        fontFamily: '"DM Mono",monospace', fontSize: 7.5,
+        color: T.brand, textTransform: 'uppercase', letterSpacing: '0.18em',
+        opacity: 0.75,
+      }}>años+</span>
     </div>
   </div>
 );
@@ -560,17 +583,17 @@ const CL = ['ENGIE Perú', 'PETROPERÚ', 'MINEM', 'Osinergmin', 'Electroperú', 
 const Marquee = () => {
   const all = [...CL, ...CL, ...CL, ...CL];
   return (
-    <div style={{ overflow: 'hidden', background: T.bgMid, borderTop: `1px solid rgba(2,83,126,0.18)`, padding: '13px 0' }}>
+    <div style={{ overflow: 'hidden', background: T.bgDeep, borderTop: `1px solid ${T.line}`, padding: '13px 0' }}>
       <div style={{ display: 'flex', animation: 'marquee 28s linear infinite', width: 'max-content' }}>
         {all.map((c, i) => (
           <span key={i} style={{
             display: 'inline-flex', alignItems: 'center', gap: 16, padding: '0 18px',
             fontFamily: '"DM Mono",monospace', fontSize: 9.5,
-            color: 'rgba(184,223,240,0.22)',
+            color: T.dim,
             textTransform: 'uppercase', letterSpacing: '0.2em', whiteSpace: 'nowrap',
           }}>
             {c}
-            <span style={{ width: 3, height: 3, borderRadius: '50%', background: T.brand + '99', display: 'inline-block' }} />
+            <span style={{ width: 3, height: 3, borderRadius: '50%', background: T.active + '77', display: 'inline-block' }} />
           </span>
         ))}
       </div>
@@ -604,33 +627,33 @@ const HeroSection = () => {
         position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
         backgroundImage: `url(${bgGrid})`,
         backgroundSize: 'cover', backgroundPosition: 'center',
-        opacity: 0.055, mixBlendMode: 'screen',
+        opacity: 0.04, mixBlendMode: 'multiply',
       }} />
 
-      {/* Brand glow */}
+      {/* Brand glow — en claro es sutil, alude a profundidad */}
       <div style={{
         position: 'absolute', left: '-8%', top: '20%',
         width: '55vw', height: '70vh', zIndex: 2, pointerEvents: 'none',
-        background: `radial-gradient(ellipse at 30% 50%, ${T.brand}18 0%, transparent 58%)`,
+        background: `radial-gradient(ellipse at 30% 50%, ${T.active}0F 0%, transparent 58%)`,
       }} />
 
-      {/* Content fades */}
+      {/* Content fade: izquierda opaca sobre imagen */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 3,
-        background: `linear-gradient(108deg, ${T.bg} 43%, rgba(2,12,24,0.88) 57%, rgba(2,12,24,0.06) 76%, transparent 100%)`,
+        background: `linear-gradient(108deg, ${T.bg} 43%, ${T.bg}E6 57%, ${T.bg}22 76%, transparent 100%)`,
       }} />
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: '36%', zIndex: 3,
         background: `linear-gradient(to top, ${T.bg} 0%, transparent 100%)`,
       }} />
 
-      {/* Ghost word */}
+      {/* Ghost word — azul muy claro */}
       <div aria-hidden style={{
         position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-48%)',
         zIndex: 2, pointerEvents: 'none', userSelect: 'none',
         fontFamily: '"Cormorant Garamond",serif', fontWeight: 700, fontStyle: 'italic',
         fontSize: 'clamp(160px,26vw,380px)', lineHeight: 1,
-        color: 'transparent', WebkitTextStroke: `1px ${T.brand}18`,
+        color: 'transparent', WebkitTextStroke: `1px ${T.brand}0F`,
         letterSpacing: '-0.04em',
       }}>ENERGÍA</div>
 
@@ -648,19 +671,21 @@ const HeroSection = () => {
             transition={{ duration: 22, ease: 'easeOut', repeat: Infinity, repeatType: 'reverse' }}
             style={{
               width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 38%',
-              filter: 'grayscale(15%) brightness(0.46) contrast(1.22) saturate(0.7)',
+              /* Paleta clara: imagen desaturada + luminosa, tono azulado */
+              filter: 'grayscale(40%) brightness(0.82) contrast(1.08) saturate(0.6)',
               display: 'block',
             }}
           />
         </motion.div>
+        {/* Blue-white fade from left */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: `linear-gradient(96deg, ${T.bg}CC 0%, ${T.bg}44 30%, transparent 55%)`,
+          background: `linear-gradient(96deg, ${T.bg}EE 0%, ${T.bg}88 28%, transparent 52%)`,
         }} />
+        {/* Subtle blue veil */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: `linear-gradient(180deg, ${T.brand}14 0%, transparent 40%, ${T.bg}55 100%)`,
-          mixBlendMode: 'multiply',
+          background: `linear-gradient(180deg, ${T.active}0A 0%, transparent 40%, ${T.bgDeep}CC 100%)`,
         }} />
 
         {/* Rotating badge */}
@@ -679,10 +704,10 @@ const HeroSection = () => {
           transition={{ delay: 2.4, duration: 1 }}
           style={{ position: 'absolute', bottom: '10%', right: 24, zIndex: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}
         >
-          <div style={{ width: 1, height: 50, background: T.active + '44' }} />
+          <div style={{ width: 1, height: 50, background: T.active + '33' }} />
           <span style={{
             fontFamily: '"DM Mono",monospace', fontSize: 8,
-            color: 'rgba(184,223,240,0.28)',
+            color: T.dim,
             textTransform: 'uppercase', letterSpacing: '0.24em', writingMode: 'vertical-rl',
           }}>SEIN · Lima · Perú</span>
         </motion.div>
@@ -706,15 +731,16 @@ const HeroSection = () => {
         >
           <div data-c="perfil" style={{
             display: 'inline-flex', alignItems: 'center', gap: 12,
-            border: `1px solid ${T.brand}55`, padding: '8px 16px 8px 10px',
+            border: `1px solid ${T.lineStrong}`, padding: '8px 16px 8px 10px',
             transition: 'border-color .3s', cursor: 'default',
+            background: 'rgba(255,255,255,0.72)', backdropFilter: 'blur(8px)',
           }}
-          onMouseEnter={e => e.currentTarget.style.borderColor = T.cyan + '77'}
-          onMouseLeave={e => e.currentTarget.style.borderColor = T.brand + '55'}
+          onMouseEnter={e => e.currentTarget.style.borderColor = T.cyan + 'AA'}
+          onMouseLeave={e => e.currentTarget.style.borderColor = T.lineStrong}
           >
             <span style={{
               fontFamily: '"DM Mono",monospace', fontSize: 8,
-              background: T.brand, color: T.white,
+              background: T.brand, color: '#fff',
               padding: '4px 9px', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 500,
             }}>EX VICEMINISTRO</span>
             <span style={{
@@ -727,9 +753,9 @@ const HeroSection = () => {
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <div style={{ maxWidth: '60%' }}>
             {[
-              { text: 'Estrategia',  color: T.white,              italic: false, delay: 0.52 },
-              { text: 'Energética',  color: T.cyan,               italic: true,  delay: 0.70 },
-              { text: 'de Élite.',   color: 'rgba(184,223,240,0.2)', italic: false, delay: 0.88 },
+              { text: 'Estrategia',  color: T.ink,               italic: false, delay: 0.52 },
+              { text: 'Energética',  color: T.cyan,              italic: true,  delay: 0.70 },
+              { text: 'de Élite.',   color: T.brand + '28',      italic: false, delay: 0.88 },
             ].map(({ text, color, italic, delay }) => (
               <div key={text} style={{ overflow: 'hidden', lineHeight: 0.88 }}>
                 <motion.h1
@@ -766,10 +792,10 @@ const HeroSection = () => {
                     display: 'flex', alignItems: 'center', gap: 10,
                     padding: '14px 30px', background: T.cyan, border: 'none', cursor: 'pointer',
                     fontFamily: '"DM Sans",sans-serif', fontWeight: 600,
-                    fontSize: 10.5, color: T.bg,
+                    fontSize: 10.5, color: '#fff',
                     textTransform: 'uppercase', letterSpacing: '0.2em', transition: 'background .28s',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background = T.white}
+                  onMouseEnter={e => e.currentTarget.style.background = T.brand}
                   onMouseLeave={e => e.currentTarget.style.background = T.cyan}
                 >
                   Ver Servicios
@@ -783,13 +809,13 @@ const HeroSection = () => {
                   data-c=""
                   style={{
                     padding: '13px 26px', background: 'transparent',
-                    border: `1px solid ${T.brand}`, cursor: 'pointer',
+                    border: `1px solid ${T.lineStrong}`, cursor: 'pointer',
                     fontFamily: '"DM Sans",sans-serif', fontWeight: 400,
                     fontSize: 10.5, color: T.muted,
                     textTransform: 'uppercase', letterSpacing: '0.2em', transition: 'all .28s',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = T.cyan; e.currentTarget.style.color = T.cyan; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = T.brand; e.currentTarget.style.color = T.muted; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = T.lineStrong; e.currentTarget.style.color = T.muted; }}
                 >Conócenos</motion.button>
               </div>
             </motion.div>
@@ -803,7 +829,7 @@ const HeroSection = () => {
             transition={{ delay: 1.35, duration: 1.3, ease: SILK }}
             style={{
               height: 1,
-              background: `linear-gradient(90deg, ${T.active}88 0%, ${T.active}22 50%, transparent 100%)`,
+              background: `linear-gradient(90deg, ${T.active}66 0%, ${T.active}18 50%, transparent 100%)`,
               marginBottom: 20, transformOrigin: 'left',
             }}
           />
@@ -812,7 +838,7 @@ const HeroSection = () => {
               <React.Fragment key={s.label}>
                 <Stat {...s} />
                 {i < STATS.length - 1 && (
-                  <div style={{ width: 1, height: 34, alignSelf: 'center', background: `rgba(10,143,199,0.12)`, flexShrink: 0 }} />
+                  <div style={{ width: 1, height: 34, alignSelf: 'center', background: T.line, flexShrink: 0 }} />
                 )}
               </React.Fragment>
             ))}
@@ -822,11 +848,11 @@ const HeroSection = () => {
             >
               <span style={{
                 fontFamily: '"Cormorant Garamond",serif', fontWeight: 700, fontStyle: 'italic',
-                fontSize: 'clamp(24px,3.2vw,42px)', color: `${T.brand}22`, letterSpacing: '-0.04em',
+                fontSize: 'clamp(24px,3.2vw,42px)', color: T.brand + '1A', letterSpacing: '-0.04em',
               }}>2000</span>
               <p style={{
                 fontFamily: '"DM Mono",monospace', fontSize: 8.5,
-                color: `rgba(184,223,240,0.2)`, margin: 0,
+                color: T.dim, margin: 0,
                 textTransform: 'uppercase', letterSpacing: '0.22em',
               }}>Fundación</p>
             </motion.div>
@@ -843,10 +869,10 @@ const HeroSection = () => {
         }}
       >
         <span style={{
-          fontFamily: '"DM Mono",monospace', fontSize: 8, color: 'rgba(184,223,240,0.25)',
+          fontFamily: '"DM Mono",monospace', fontSize: 8, color: T.dim,
           textTransform: 'uppercase', letterSpacing: '0.3em', writingMode: 'vertical-rl',
         }}>Explorar</span>
-        <div style={{ width: 1, height: 64, background: T.active + '18', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ width: 1, height: 64, background: T.line, position: 'relative', overflow: 'hidden' }}>
           <motion.div
             animate={{ y: ['-100%', '200%'] }}
             transition={{ repeat: Infinity, duration: 2, ease: 'linear' }}
@@ -870,34 +896,18 @@ const Hero = () => {
   return (
     <>
       <Cursor />
-
-      {/*
-        LAYER ORDER (highest zIndex wins):
-        ─ cursor          z:9000/9001
-        ─ menu fullscreen z:500   ← covers header
-        ─ header          z:80    ← visible when menu closed
-        ─ hero            z:1-10
-      */}
-
-      {/* Header — z:80 */}
       <Header menuOpen={menuOpen} onToggle={() => setMenuOpen(p => !p)} />
-
-      {/* Menu — z:500, mounts/unmounts with AnimatePresence */}
       <AnimatePresence>
         {menuOpen && <Menu onClose={() => setMenuOpen(false)} />}
       </AnimatePresence>
-
-      {/* Hero */}
       <HeroSection />
-
-      {/* Marquee */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1 }}>
         <Marquee />
       </motion.div>
 
       <style>{`
         *, *::before, *::after { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { cursor: none; margin: 0; }
+        body { cursor: none; margin: 0; background: ${T.bg}; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.3;transform:scale(0.72);} }
         .hdr-cta   { display: flex !important; }

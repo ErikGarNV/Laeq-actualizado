@@ -13,16 +13,16 @@ import {
    DESIGN TOKENS
 ════════════════════════════════════════════════════ */
 const T = {
-  bg:     '#071E30',
-  bgCard: '#0A2640',
-  bgDeep: '#051525',
+  bg:     '#FFFFFF',
+  bgCard: '#EBF5FF',
+  bgDeep: '#E2EEF8',
   brand:  '#02537E',
   active: '#0A8FC7',
   cyan:   '#1EB8F0',
-  white:  '#E8F4FC',
-  muted:  'rgba(184,223,240,0.44)',
-  dim:    'rgba(184,223,240,0.22)',
-  text:   'rgba(200,235,248,0.88)',
+  white:  '#0D2B4E',
+  muted:  'rgba(2,83,126,0.55)',
+  dim:    'rgba(2,83,126,0.38)',
+  text:   'rgba(13,43,78,0.78)',
 };
 const SILK  = [0.16, 1,    0.3,  1];
 const EXPO  = [0.76, 0,    0.24, 1];
@@ -53,10 +53,10 @@ const TEAM = [
     formation: 'Ing. Mecánico Electricista · UNI  /  MBA · ESAN',
     bio: 'Más de 25 años liderando proyectos en el sector energético peruano. Arquitecto de políticas regulatorias, contratos PPA hasta 500 MW y planes estratégicos de alcance nacional con impacto directo en 150,000 beneficiarios.',
     expertise: [
-      { label: 'Regulación eléctrica',    pct: 96 },
-      { label: 'Contratos de energía',    pct: 92 },
-      { label: 'Planificación energética', pct: 88 },
-      { label: 'Gas natural',             pct: 85 },
+      { label: 'Regulación eléctrica',    pct: 100 },
+      { label: 'Contratos de energía',    pct: 100},
+      { label: 'Planificación energética', pct: 100 },
+      { label: 'Gas natural',             pct: 100},
     ],
     tags: ['Electricidad','Hidrocarburos','Gas Natural','PPA'],
     stat: { val: '25+', label: 'años experiencia' },
@@ -71,10 +71,10 @@ const TEAM = [
     formation: 'Abogada · USMP  /  Maestría Finanzas & Derecho Corp. · ESAN',
     bio: '12 años especializados en regulación energética y contratos de gas natural. Referente en controversias ante OSINERGMIN y COES, con más de 27 pericias técnicas que resolvieron disputas de alta complejidad para el sector.',
     expertise: [
-      { label: 'Derecho energético',     pct: 97 },
-      { label: 'Contratos gas natural',  pct: 94 },
-      { label: 'Pericia técnica',        pct: 90 },
-      { label: 'Regulación OSINERGMIN',  pct: 88 },
+      { label: 'Derecho energético',     pct: 100},
+      { label: 'Contratos gas natural',  pct: 100},
+      { label: 'Pericia técnica',        pct: 100},
+      { label: 'Regulación OSINERGMIN',  pct: 100 },
     ],
     tags: ['Regulación','Derecho Energético','Contratos','COES'],
     stat: { val: '27+', label: 'pericias técnicas' },
@@ -181,7 +181,7 @@ const PARTICLE_DATA = Array.from({ length: 32 }, (_, i) => ({
   delay: -(Math.random() * 20),
   dx: (Math.random() - 0.5) * 140,
   dy: (Math.random() - 0.5) * 140,
-  color: i % 4 === 0 ? T.cyan : i % 4 === 1 ? T.active : i % 4 === 2 ? T.brand : `${T.cyan}66`,
+  color: i % 4 === 0 ? 'rgba(30,184,240,0.35)' : i % 4 === 1 ? 'rgba(10,143,199,0.25)' : i % 4 === 2 ? 'rgba(2,83,126,0.20)' : 'rgba(30,184,240,0.15)',
 }));
 
 const Particles = () => (
@@ -189,7 +189,7 @@ const Particles = () => (
     {PARTICLE_DATA.map(p => (
       <motion.div key={p.id}
         style={{ position:'absolute', left:`${p.x}%`, top:`${p.y}%`, width:p.size, height:p.size, borderRadius:'50%', background:p.color, opacity:0 }}
-        animate={{ x:[0, p.dx, p.dx*-0.4, 0], y:[0, p.dy, p.dy*-0.4, 0], opacity:[0, 0.8, 0.35, 0], scale:[0, 1, 0.6, 0] }}
+        animate={{ x:[0, p.dx, p.dx*-0.4, 0], y:[0, p.dy, p.dy*-0.4, 0], opacity:[0, 0.45, 0.18, 0], scale:[0, 1, 0.6, 0] }}
         transition={{ duration:p.dur, delay:p.delay, repeat:Infinity, ease:'easeInOut' }}
       />
     ))}
@@ -260,11 +260,11 @@ const Label = ({ children, delay=0, inView }) => (
 ════════════════════════════════════════════════════ */
 const Atmosphere = () => (
   <>
-    <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0, opacity:0.022,
+    <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0, opacity:0.008,
       backgroundImage:`url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
       backgroundSize:'200px 200px' }} />
-    <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0, opacity:0.35,
-      backgroundImage:`linear-gradient(${T.brand}08 1px,transparent 1px),linear-gradient(90deg,${T.brand}08 1px,transparent 1px)`,
+    <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0, opacity:0.25,
+      backgroundImage:`linear-gradient(rgba(2,83,126,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(2,83,126,0.04) 1px,transparent 1px)`,
       backgroundSize:'72px 72px' }} />
   </>
 );
@@ -291,10 +291,11 @@ const StatCard = ({ s, i, inView }) => {
       <motion.div style={{
         rotateX:rX, rotateY:rY, transformStyle:'preserve-3d',
         padding:'clamp(28px,3vw,44px) clamp(20px,2.5vw,34px)',
-        border:`1px solid ${hov ? T.cyan+'66' : T.brand+'33'}`,
+        border:`1px solid ${hov ? T.cyan+'88' : 'rgba(2,83,126,0.10)'}`,
         background: hov
-          ? `linear-gradient(145deg,${T.bgCard} 0%,${T.brand}22 100%)`
-          : `linear-gradient(145deg,${T.bgCard}bb 0%,${T.bgDeep}99 100%)`,
+          ? `linear-gradient(145deg,#DCEEFF 0%,rgba(10,143,199,0.06) 100%)`
+          : `linear-gradient(145deg,#EBF5FF 0%,#FFFFFF 100%)`,
+        boxShadow: hov ? '0 8px 40px rgba(10,143,199,0.12)' : '0 2px 16px rgba(2,83,126,0.04)',
         position:'relative', overflow:'hidden',
         transition:'border-color 0.3s, background 0.3s',
       }}>
@@ -356,7 +357,7 @@ const ExpertiseBar = ({ label, pct, color, i, trigger }) => {
         >{pct}%</motion.span>
       </div>
       {/* Track */}
-      <div style={{ height:2, background:`${T.brand}28`, position:'relative', overflow:'hidden' }}>
+      <div style={{ height:2, background:`rgba(2,83,126,0.08)`, position:'relative', overflow:'hidden' }}>
         <motion.div
           initial={{ scaleX:0 }} animate={active ? { scaleX:1 } : {}}
           transition={{ duration:1.1, ease:SILK, delay: 0.55 + i*0.12 }}
@@ -464,8 +465,8 @@ const TeamCard = ({ m, i, inView }) => {
             transition={{ duration:0.38, ease:SILK }}
             style={{ display:'inline-flex', alignItems:'center', gap:8,
               marginBottom:16, padding:'5px 12px',
-              border:`1px solid ${m.color}33`,
-              background:`${m.color}0C` }}
+              border:`1px solid ${m.color}44`,
+              background:`${m.color}08` }}
           >
             {/* Pulsing dot */}
             <motion.div
@@ -494,7 +495,7 @@ const TeamCard = ({ m, i, inView }) => {
             animate={{ opacity: expanded ? 1 : 0.45, x: expanded ? 0 : -6 }}
             transition={{ duration:0.38, ease:SILK }}
             style={{ fontFamily:'"DM Mono",monospace', fontSize:8.5,
-              color:`${T.active}66`, letterSpacing:'0.14em', marginBottom:20,
+              color:`rgba(10,143,199,0.55)`, letterSpacing:'0.14em', marginBottom:20,
               textTransform:'uppercase', lineHeight:1.6 }}>{m.formation}</motion.div>
 
           {/* Divider that expands */}
@@ -547,7 +548,7 @@ const TeamCard = ({ m, i, inView }) => {
                     {m.tags.map(tag => (
                       <span key={tag} style={{ fontFamily:'"DM Mono",monospace', fontSize:8,
                         textTransform:'uppercase', letterSpacing:'0.16em', padding:'4px 10px',
-                        border:`1px solid ${m.color}33`, color:`${m.color}88` }}>{tag}</span>
+                        border:`1px solid ${m.color}44`, color:`${m.color}` }}>{tag}</span>
                     ))}
                   </div>
                   {/* Stat badge */}
@@ -581,18 +582,18 @@ const TeamCard = ({ m, i, inView }) => {
                 {m.tags.slice(0,2).map(tag => (
                   <span key={tag} style={{ fontFamily:'"DM Mono",monospace', fontSize:8,
                     textTransform:'uppercase', letterSpacing:'0.14em', padding:'3px 8px',
-                    border:`1px solid ${T.brand}28`, color:`${T.active}66` }}>{tag}</span>
+                    border:`1px solid rgba(2,83,126,0.15)`, color:`rgba(10,143,199,0.60)` }}>{tag}</span>
                 ))}
                 <span style={{ fontFamily:'"DM Mono",monospace', fontSize:8,
                   textTransform:'uppercase', letterSpacing:'0.14em', padding:'3px 8px',
-                  color:`${T.brand}55` }}>+{m.tags.length - 2} más</span>
+                  color:`rgba(2,83,126,0.45)` }}>+{m.tags.length - 2} más</span>
               </div>
               {/* Expand hint */}
               <motion.div
                 animate={{ y:[0,-3,0] }} transition={{ duration:1.6, repeat:Infinity, ease:'easeInOut' }}
                 style={{ display:'flex', alignItems:'center', gap:6, paddingTop:18 }}>
                 <span style={{ fontFamily:'"DM Mono",monospace', fontSize:7.5,
-                  color:`${T.brand}55`, letterSpacing:'0.22em', textTransform:'uppercase' }}>ver perfil</span>
+                  color:`rgba(2,83,126,0.40)`, letterSpacing:'0.22em', textTransform:'uppercase' }}>ver perfil</span>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
                   stroke={`${T.brand}55`} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -620,8 +621,9 @@ const ValueCard = ({ v, i, inView }) => {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{ padding:'32px 26px', position:'relative', overflow:'hidden', cursor:'default',
-        border:`1px solid ${hov ? T.cyan+'44' : T.brand+'1C'}`,
-        background: hov ? `linear-gradient(148deg,${T.brand}1C 0%,${T.bgCard}cc 100%)` : `linear-gradient(148deg,${T.bgCard}77 0%,${T.bgDeep}99 100%)`,
+        border:`1px solid ${hov ? T.cyan+'66' : 'rgba(2,83,126,0.08)'}`,
+        background: hov ? `linear-gradient(148deg,#DCEEFF 0%,#F5FAFF 100%)` : `linear-gradient(148deg,#EBF5FF 0%,#FFFFFF 100%)`,
+        boxShadow: hov ? '0 8px 32px rgba(10,143,199,0.10)' : '0 1px 12px rgba(2,83,126,0.04)',
         transition:'border-color 0.38s, background 0.38s' }}
     >
       {/* Left bar */}
@@ -640,7 +642,7 @@ const ValueCard = ({ v, i, inView }) => {
           transition={{ duration:0.38, ease:SILK }} style={{ lineHeight:0 }}>{v.icon}</motion.div>
       </div>
 
-      <motion.div animate={{ color: hov ? T.white : T.muted }} transition={{ duration:0.3 }}
+      <motion.div animate={{ color: hov ? '#0D2B4E' : 'rgba(2,83,126,0.70)' }} transition={{ duration:0.3 }}
         style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700,
           fontSize:'clamp(20px,2.2vw,26px)', letterSpacing:'-0.018em',
           marginBottom:12, lineHeight:1.05, paddingBottom:'0.04em' }}>{v.label}</motion.div>
@@ -676,13 +678,14 @@ const TimelineItem = ({ t, i, total, inView, isActive, onClick }) => {
             background: isActive
               ? `linear-gradient(135deg,${T.cyan} 0%,${T.active} 100%)`
               : t.highlight
-                ? `linear-gradient(135deg,${T.brand}99 0%,${T.bgCard} 100%)`
-                : T.bgCard,
-            border:`2px solid ${isActive ? T.cyan : t.highlight ? T.brand+'77' : T.brand+'28'}`,
+                ? `linear-gradient(135deg,rgba(10,143,199,0.20) 0%,#EBF5FF 100%)`
+                : '#EBF5FF',
+            border:`2px solid ${isActive ? T.cyan : t.highlight ? 'rgba(10,143,199,0.45)' : 'rgba(2,83,126,0.15)'}`,
+            boxShadow: isActive ? `0 0 24px rgba(30,184,240,0.30)` : 'none',
             boxShadow: isActive ? `0 0 28px ${T.cyan}55,0 0 60px ${T.cyan}1A` : 'none',
             zIndex:1, transition:'all 0.42s ease' }}>
           <span style={{ fontFamily:'"DM Mono",monospace', fontSize:8,
-            color: isActive ? T.bg : t.highlight ? T.white : T.muted,
+            color: isActive ? '#FFFFFF' : t.highlight ? '#0A8FC7' : 'rgba(2,83,126,0.55)',
             fontWeight:500, letterSpacing:'0.04em', transition:'color 0.3s', textAlign:'center', lineHeight:1.2 }}>{t.year}</span>
         </motion.div>
         {!isLast && (
@@ -690,8 +693,8 @@ const TimelineItem = ({ t, i, total, inView, isActive, onClick }) => {
             transition={{ duration:0.62, ease:SILK, delay:0.08*i+0.32 }}
             style={{ flex:1, width:1, minHeight:36, transformOrigin:'top',
               background: isActive
-                ? `linear-gradient(180deg,${T.cyan}99 0%,${T.brand}44 100%)`
-                : `linear-gradient(180deg,${T.brand}44 0%,${T.brand}14 100%)`,
+                ? `linear-gradient(180deg,rgba(30,184,240,0.60) 0%,rgba(2,83,126,0.15) 100%)`
+                : `linear-gradient(180deg,rgba(2,83,126,0.15) 0%,rgba(2,83,126,0.04) 100%)`,
               transition:'background 0.42s' }} />
         )}
       </div>
@@ -701,8 +704,8 @@ const TimelineItem = ({ t, i, total, inView, isActive, onClick }) => {
         transition={{ duration:0.62, ease:SILK, delay:0.08*i+0.18 }}
         style={{ flex:1, paddingLeft:20, paddingBottom: isLast ? 0 : 34, paddingTop:10 }}>
         <motion.div
-          animate={{ background: isActive ? `linear-gradient(135deg,${T.brand}1E 0%,${T.bgCard}88 100%)` : 'transparent',
-            borderColor: isActive ? T.brand+'44' : 'transparent' }}
+          animate={{ background: isActive ? `linear-gradient(135deg,rgba(10,143,199,0.06) 0%,rgba(235,245,255,0.95) 100%)` : 'transparent',
+            borderColor: isActive ? 'rgba(10,143,199,0.25)' : 'transparent' }}
           transition={{ duration:0.38 }}
           style={{ padding:'14px 18px', border:'1px solid transparent', position:'relative', overflow:'hidden' }}>
           {/* Active top line */}
@@ -713,12 +716,12 @@ const TimelineItem = ({ t, i, total, inView, isActive, onClick }) => {
           <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:10 }}>
             <h4 style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700,
               fontSize:'clamp(16px,1.75vw,21px)',
-              color: isActive ? T.white : t.highlight ? T.muted : T.dim,
+              color: isActive ? '#0D2B4E' : t.highlight ? 'rgba(2,83,126,0.70)' : 'rgba(2,83,126,0.45)',
               margin:'0 0 4px', letterSpacing:'-0.014em', paddingBottom:'0.04em',
               lineHeight:1.15, transition:'color 0.3s', flex:1 }}>{t.title}</h4>
             <motion.span animate={{ opacity: isActive ? 1 : 0, scale: isActive ? 1 : 0.85 }}
               transition={{ duration:0.3 }}
-              style={{ fontFamily:'"DM Mono",monospace', fontSize:8, color:T.bg, background:T.cyan,
+              style={{ fontFamily:'"DM Mono",monospace', fontSize:8, color:'#FFFFFF', background:T.cyan,
                 padding:'3px 8px', whiteSpace:'nowrap', flexShrink:0 }}>{t.kpi}</motion.span>
           </div>
 
@@ -743,13 +746,13 @@ const Ticker = ({ inView }) => {
   const all = [...CLIENTS, ...CLIENTS, ...CLIENTS];
   return (
     <motion.div initial={{ opacity:0 }} animate={inView ? { opacity:1 } : {}} transition={{ duration:0.9, delay:0.7 }}
-      style={{ overflow:'hidden', borderTop:`1px solid ${T.brand}28`, borderBottom:`1px solid ${T.brand}28`,
+      style={{ overflow:'hidden', borderTop:`1px solid rgba(2,83,126,0.10)`, borderBottom:`1px solid rgba(2,83,126,0.10)`,
         padding:'13px 0', position:'relative',
-        background:`linear-gradient(90deg,${T.bgDeep} 0%,${T.bgCard}44 50%,${T.bgDeep} 100%)` }}>
+        background:`linear-gradient(90deg,#EBF5FF 0%,#F0FAFF 50%,#EBF5FF 100%)` }}>
       {/* Fade edges */}
       {['left','right'].map(side => (
         <div key={side} style={{ position:'absolute', [side]:0, top:0, bottom:0, width:90, zIndex:2,
-          background:`linear-gradient(${side==='left'?'90deg':'270deg'},${T.bg},transparent)` }} />
+          background:`linear-gradient(${side==='left'?'90deg':'270deg'},#EBF5FF,transparent)` }} />
       ))}
       <motion.div
         animate={{ x:['0%','-33.33%'] }}
@@ -758,8 +761,8 @@ const Ticker = ({ inView }) => {
         {all.map((c,i) => (
           <span key={i} style={{ display:'inline-flex', alignItems:'center', gap:26, padding:'0 26px' }}>
             <span style={{ fontFamily:'"DM Mono",monospace', fontSize:9,
-              color:`${T.active}66`, textTransform:'uppercase', letterSpacing:'0.24em' }}>{c}</span>
-            <span style={{ color:`${T.brand}44`, fontSize:5 }}>◆</span>
+              color:`rgba(10,143,199,0.60)`, textTransform:'uppercase', letterSpacing:'0.24em' }}>{c}</span>
+            <span style={{ color:`rgba(2,83,126,0.25)`, fontSize:5 }}>◆</span>
           </span>
         ))}
       </motion.div>
@@ -775,14 +778,14 @@ const ManifestoStrip = ({ inView }) => {
   const repeated = Array(4).fill(text).join(' ');
   return (
     <motion.div initial={{ opacity:0 }} animate={inView ? { opacity:1 } : {}} transition={{ duration:0.8, delay:0.3 }}
-      style={{ overflow:'hidden', padding:'18px 0', borderTop:`1px solid ${T.brand}18`, borderBottom:`1px solid ${T.brand}18`, position:'relative' }}>
+      style={{ overflow:'hidden', padding:'18px 0', borderTop:`1px solid rgba(2,83,126,0.07)`, borderBottom:`1px solid rgba(2,83,126,0.07)`, position:'relative' }}>
       <motion.div
         animate={{ x:['0%','-50%'] }}
         transition={{ duration:18, ease:'linear', repeat:Infinity }}
         style={{ display:'flex', whiteSpace:'nowrap', width:'max-content' }}>
         {[...Array(2)].map((_,ri) => (
           <span key={ri} style={{ fontFamily:'"Cormorant Garamond",serif', fontStyle:'italic', fontWeight:300,
-            fontSize:'clamp(13px,1.2vw,16px)', color:`${T.brand}55`, letterSpacing:'0.06em',
+            fontSize:'clamp(13px,1.2vw,16px)', color:`rgba(2,83,126,0.38)`, letterSpacing:'0.06em',
             paddingRight:'3em' }}>{repeated}</span>
         ))}
       </motion.div>
@@ -822,16 +825,16 @@ const Nosotros = () => {
   }, [ivTL]);
 
   return (
-    <section ref={sectionRef} id="nosotros" style={{ background:T.bg, position:'relative', overflow:'hidden', paddingBottom:'clamp(80px,10vh,120px)' }}>
+    <section ref={sectionRef} id="nosotros" style={{ background:'linear-gradient(175deg,#FFFFFF 0%,#F0F8FF 50%,#E8F3FC 100%)', position:'relative', overflow:'hidden', paddingBottom:'clamp(80px,10vh,120px)' }}>
       <Cursor />
       <Atmosphere />
       <Particles />
 
       {/* Parallax blobs */}
       <motion.div style={{ y:parallaxY, position:'absolute', inset:0, pointerEvents:'none', zIndex:0 }}>
-        <div style={{ position:'absolute', left:'-12%', top:'2%', width:'54vw', height:'52vh', background:`radial-gradient(ellipse,${T.brand}1E 0%,transparent 65%)` }} />
-        <div style={{ position:'absolute', right:'-4%', top:'38%', width:'40vw', height:'44vh', background:`radial-gradient(ellipse,${T.cyan}0C 0%,transparent 65%)` }} />
-        <div style={{ position:'absolute', left:'28%', bottom:'6%', width:'36vw', height:'32vh', background:`radial-gradient(ellipse,${T.brand}12 0%,transparent 65%)` }} />
+        <div style={{ position:'absolute', left:'-12%', top:'2%', width:'54vw', height:'52vh', background:`radial-gradient(ellipse,rgba(10,143,199,0.07) 0%,transparent 65%)` }} />
+        <div style={{ position:'absolute', right:'-4%', top:'38%', width:'40vw', height:'44vh', background:`radial-gradient(ellipse,rgba(30,184,240,0.05) 0%,transparent 65%)` }} />
+        <div style={{ position:'absolute', left:'28%', bottom:'6%', width:'36vw', height:'32vh', background:`radial-gradient(ellipse,rgba(2,83,126,0.04) 0%,transparent 65%)` }} />
       </motion.div>
 
       <div style={{ position:'relative', zIndex:1 }}>
@@ -845,7 +848,7 @@ const Nosotros = () => {
             style={{ position:'absolute', right:'clamp(16px,4vw,60px)', top:'clamp(60px,8vw,100px)',
               fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontStyle:'italic',
               fontSize:'clamp(100px,16vw,200px)', lineHeight:1,
-              color:`${T.brand}12`, letterSpacing:'-0.04em', userSelect:'none',
+              color:`rgba(2,83,126,0.06)`, letterSpacing:'-0.04em', userSelect:'none',
               pointerEvents:'none', paddingBottom:'0.05em' }}>02</motion.div>
 
           <div style={{ padding:'clamp(80px,10vh,130px) clamp(24px,5vw,80px) 0',
@@ -882,10 +885,10 @@ const Nosotros = () => {
               <motion.div initial={{ opacity:0, y:12 }} animate={ivHero ? { opacity:1, y:0 } : {}}
                 transition={{ duration:0.7, ease:SILK, delay:0.72 }}
                 style={{ display:'flex', alignItems:'center', gap:16, marginTop:20 }}>
-                <span style={{ fontFamily:'"DM Mono",monospace', fontSize:9, color:`${T.active}66`,
+                <span style={{ fontFamily:'"DM Mono",monospace', fontSize:9, color:`rgba(10,143,199,0.55)`,
                   textTransform:'uppercase', letterSpacing:'0.32em' }}>Est.</span>
                 <span style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700,
-                  fontSize:'clamp(18px,2vw,26px)', color:`${T.brand}88`, letterSpacing:'-0.02em' }}>Lima, Perú — 2014</span>
+                  fontSize:'clamp(18px,2vw,26px)', color:`rgba(2,83,126,0.65)`, letterSpacing:'-0.02em' }}>Lima, Perú — 2014</span>
               </motion.div>
             </div>
 
@@ -924,7 +927,7 @@ const Nosotros = () => {
               style={{ fontFamily:'"DM Mono",monospace', fontSize:8.5, color:`${T.brand}55`,
                 letterSpacing:'0.24em', textTransform:'uppercase' }}>LAEQ & Asociados · Perú</motion.div>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:`${T.brand}22` }} className="n-stats">
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:1, background:`rgba(2,83,126,0.08)` }} className="n-stats">
             {STATS.map((s,i) => <StatCard key={s.label} s={s} i={i} inView={ivStats} />)}
           </div>
         </div>
@@ -963,12 +966,12 @@ const Nosotros = () => {
             transition={{ duration:0.8, ease:SILK }}
             style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'clamp(24px,3vw,60px)', alignItems:'center',
               padding:'clamp(36px,4vh,60px) clamp(32px,4vw,64px)',
-              border:`1px solid ${T.brand}28`,
-              background:`linear-gradient(138deg,${T.bgCard}55 0%,${T.bgDeep}99 100%)`,
-              position:'relative', overflow:'hidden', marginBottom:1 }} className="n-val-banner">
+              border:'none',
+              background:`linear-gradient(138deg,#EBF5FF 0%,#FFFFFF 100%)`,
+              border:'1px solid rgba(2,83,126,0.10)', position:'relative', overflow:'hidden', marginBottom:1 }} className="n-val-banner">
             {/* Corner decoration */}
             <div style={{ position:'absolute', top:0, right:0, width:220, height:220, pointerEvents:'none',
-              background:`radial-gradient(ellipse at top right,${T.brand}2A 0%,transparent 65%)` }} />
+              background:`radial-gradient(ellipse at top right,rgba(30,184,240,0.08) 0%,transparent 65%)` }} />
             <motion.div animate={{ scaleY:[0,1,0.4,1] }} transition={{ duration:3, ease:SILK, repeat:Infinity, repeatDelay:3.5 }}
               style={{ position:'absolute', top:0, right:0, width:1, height:72, background:`linear-gradient(180deg,${T.cyan}99 0%,transparent 100%)` }} />
             <motion.div animate={{ scaleX:[0,1,0.4,1] }} transition={{ duration:3, ease:SILK, repeat:Infinity, repeatDelay:3.5 }}
@@ -988,7 +991,7 @@ const Nosotros = () => {
             </p>
           </motion.div>
           {/* Cards */}
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:1, background:`${T.brand}14` }} className="n-val">
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:1, background:`rgba(2,83,126,0.06)` }} className="n-val">
             {VALUES.map((v,i) => <ValueCard key={v.num} v={v} i={i} inView={ivVal} />)}
           </div>
         </div>
@@ -1022,7 +1025,7 @@ const Nosotros = () => {
                 style={{ display:'flex', gap:6, marginBottom:36 }}>
                 {TIMELINE.map((_,i) => (
                   <motion.div key={i} data-c="" onClick={() => setActiveYear(i)}
-                    animate={{ width: activeYear===i ? 26 : 6, background: activeYear===i ? T.cyan : `${T.brand}44` }}
+                    animate={{ width: activeYear===i ? 26 : 6, background: activeYear===i ? T.cyan : 'rgba(2,83,126,0.18)' }}
                     transition={{ duration:0.35, ease:SILK }}
                     style={{ height:5, borderRadius:3, cursor:'pointer' }} />
                 ))}
@@ -1033,13 +1036,14 @@ const Nosotros = () => {
                 <motion.div key={activeYear}
                   initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-10 }}
                   transition={{ duration:0.38, ease:SILK }}
-                  style={{ padding:'18px 20px', border:`1px solid ${T.brand}33`,
-                    background:`linear-gradient(135deg,${T.brand}14 0%,${T.bgDeep}88 100%)`,
+                  style={{ padding:'18px 20px', border:`1px solid rgba(10,143,199,0.20)`,
+                    background:`linear-gradient(135deg,rgba(10,143,199,0.05) 0%,#F0F8FF 100%)`,
+                    boxShadow:'0 4px 24px rgba(10,143,199,0.06)',
                     position:'relative', overflow:'hidden' }}>
                   <div style={{ position:'absolute', top:0, left:0, right:0, height:1,
                     background:`linear-gradient(90deg,${T.cyan}77,transparent)` }} />
                   <div style={{ fontFamily:'"DM Mono",monospace', fontSize:8.5,
-                    color:`${T.active}77`, letterSpacing:'0.26em', textTransform:'uppercase', marginBottom:6 }}>
+                    color:`rgba(10,143,199,0.60)`, letterSpacing:'0.26em', textTransform:'uppercase', marginBottom:6 }}>
                     Hito {String(activeYear+1).padStart(2,'0')} / {String(TIMELINE.length).padStart(2,'0')}
                   </div>
                   <div style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700,
@@ -1047,7 +1051,7 @@ const Nosotros = () => {
                     lineHeight:1, letterSpacing:'-0.04em' }}>{TIMELINE[activeYear].year}</div>
                   <div style={{ fontFamily:'"DM Sans",sans-serif', fontSize:12.5,
                     color:T.muted, marginTop:4, fontWeight:300 }}>{TIMELINE[activeYear].title}</div>
-                  <div style={{ fontFamily:'"DM Mono",monospace', fontSize:8, color:T.bg,
+                  <div style={{ fontFamily:'"DM Mono",monospace', fontSize:8, color:'#FFFFFF',
                     background:T.cyan, display:'inline-block', padding:'3px 9px', marginTop:10 }}>
                     {TIMELINE[activeYear].kpi}
                   </div>

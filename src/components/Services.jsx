@@ -6,18 +6,26 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 */
 
-/* ─── TOKENS ─────────────────────────────────────── */
+/* ─── TOKENS — WHITE/BLUE PALETTE ────────────────────
+   Consonante con Hero.jsx: porcelana + azul LAEQ.
+   Card: blanco puro elevado. Acento: azul eléctrico.
+*/
 const T = {
-  bg:      '#071E30',   /* ← lighter navy (was #020C18) */
-  bgCard:  '#0A2640',   /* card surface */
-  bgDeep:  '#051525',   /* deep accents */
-  brand:   '#02537E',
-  active:  '#0A8FC7',
-  cyan:    '#1EB8F0',
-  white:   '#E8F4FC',
-  muted:   'rgba(184,223,240,0.44)',
-  dim:     'rgba(184,223,240,0.22)',
+  bg:       '#F4F7FB',           /* porcelana — fondo sección */
+  bgCard:   '#FFFFFF',           /* card elevada */
+  bgDeep:   '#EAF0F8',           /* azul-white — detalle panel */
+  brand:    '#02537E',
+  active:   '#0A8FC7',
+  cyan:     '#0077B6',           /* acento principal */
+  cyanLight:'#1EB8F0',
+  ink:      '#0D1F2D',           /* texto principal */
+  white:    '#FFFFFF',
+  muted:    'rgba(2,83,126,0.58)',
+  dim:      'rgba(2,83,126,0.30)',
+  line:     'rgba(2,83,126,0.13)',
+  lineStrong:'rgba(2,83,126,0.26)',
 };
+
 const SILK = [0.16, 1, 0.3, 1];
 const EXPO = [0.76, 0, 0.24, 1];
 
@@ -122,6 +130,17 @@ const SVC = [
     kpi: { val: '500+', label: 'Profesionales capacitados' },
     icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
   },
+  {
+    id: 'legal',
+    num: '10',
+    title: 'Asesoría Técnica Legal en Procedimiento\nAdministrativo Sancionador - OSINERGMIN',
+    tag: 'Formación',
+    short: 'Programas de capacitación técnica y regulatoria para equipos internos.',
+    detail: 'Bindamos soporte y servicio de asesoría técnica - legal en Procedimientos Administrativos Sancionadores iniciados por OSINERGMIN a los agentes del mercado.',
+    bullets: ['Soporte técnico', 'Soporte legal', 'PAS', 'Derecho Administrativo'],
+    kpi: { val: '70+', label: 'Asesorias Legales' },
+    icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
+  },
 ];
 
 /* ─── SECTION HEADER ─────────────────────────────── */
@@ -146,7 +165,6 @@ const Header = () => {
         }}>Áreas de Práctica</span>
       </motion.div>
 
-      {/* Title — NO overflow:hidden, no clip */}
       <motion.h2
         initial={{ opacity: 0, y: 24 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -154,10 +172,10 @@ const Header = () => {
         style={{
           fontFamily: '"Cormorant Garamond",serif', fontWeight: 700,
           fontSize: 'clamp(46px,6.8vw,94px)',
-          color: T.white, margin: 0,
-          lineHeight: 1,           /* ← was 0.92 which clipped descenders */
+          color: T.ink, margin: 0,
+          lineHeight: 1,
           letterSpacing: '-0.025em',
-          paddingBottom: '0.08em', /* ← extra room for descenders */
+          paddingBottom: '0.08em',
         }}
       >
         Servicios{' '}
@@ -198,20 +216,20 @@ const Detail = ({ s }) => (
       position: 'relative', overflow: 'hidden',
     }}
   >
-    {/* Background glow */}
+    {/* Background tint — azul muy sutil en superficie blanca */}
     <div style={{
       position: 'absolute', top: '-20%', right: '-10%',
       width: '70%', height: '70%', pointerEvents: 'none',
-      background: `radial-gradient(ellipse, ${T.brand}28 0%, transparent 65%)`,
+      background: `radial-gradient(ellipse, ${T.active}0C 0%, transparent 65%)`,
     }} />
 
-    {/* Top line */}
+    {/* Top accent line */}
     <motion.div
       initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
       transition={{ duration: 0.7, ease: SILK }}
       style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-        background: `linear-gradient(90deg, ${T.cyan} 0%, ${T.brand}55 60%, transparent 100%)`,
+        position: 'absolute', top: 0, left: 0, right: 0, height: 2,
+        background: `linear-gradient(90deg, ${T.cyan} 0%, ${T.active}55 60%, transparent 100%)`,
         transformOrigin: 'left',
       }}
     />
@@ -226,7 +244,7 @@ const Detail = ({ s }) => (
         <span style={{ width: 20, height: 1, background: T.brand }} />
         <span style={{
           fontFamily: '"DM Mono",monospace', fontSize: 9,
-          color: `${T.active}88`, textTransform: 'uppercase', letterSpacing: '0.2em',
+          color: T.dim, textTransform: 'uppercase', letterSpacing: '0.2em',
         }}>{s.tag}</span>
       </div>
 
@@ -235,14 +253,14 @@ const Detail = ({ s }) => (
         <div style={{
           width: 52, height: 52, flexShrink: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: `${T.brand}30`,
-          border: `1px solid ${T.brand}66`,
+          background: T.bgDeep,
+          border: `1px solid ${T.lineStrong}`,
           color: T.cyan,
         }}>{s.icon}</div>
         <h3 style={{
           fontFamily: '"Cormorant Garamond",serif', fontWeight: 700,
           fontSize: 'clamp(24px,3vw,38px)',
-          color: T.white, margin: 0,
+          color: T.ink, margin: 0,
           lineHeight: 1.05, letterSpacing: '-0.02em',
           whiteSpace: 'pre-line',
           paddingBottom: '0.06em',
@@ -250,13 +268,13 @@ const Detail = ({ s }) => (
       </div>
 
       {/* Divider */}
-      <div style={{ height: 1, background: `${T.brand}28`, marginBottom: 20 }} />
+      <div style={{ height: 1, background: T.line, marginBottom: 20 }} />
 
       {/* Detail */}
       <p style={{
         fontFamily: '"DM Sans",sans-serif', fontWeight: 400,
         fontSize: 'clamp(13.5px,1.05vw,15.5px)',
-        color: 'rgba(200,235,248,0.88)', lineHeight: 1.85, margin: '0 0 24px',
+        color: T.muted, lineHeight: 1.85, margin: '0 0 24px',
       }}>{s.detail}</p>
 
       {/* Bullets */}
@@ -266,7 +284,7 @@ const Detail = ({ s }) => (
             <div style={{ width: 4, height: 4, background: T.cyan, borderRadius: '50%', flexShrink: 0 }} />
             <span style={{
               fontFamily: '"DM Sans",sans-serif', fontSize: 12,
-              color: 'rgba(184,223,240,0.75)', lineHeight: 1.4,
+              color: T.muted, lineHeight: 1.4,
             }}>{b}</span>
           </div>
         ))}
@@ -279,7 +297,7 @@ const Detail = ({ s }) => (
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       flexWrap: 'wrap', gap: 16,
       paddingTop: 20,
-      borderTop: `1px solid ${T.brand}28`,
+      borderTop: `1px solid ${T.line}`,
     }}>
       <div>
         <div style={{
@@ -289,7 +307,7 @@ const Detail = ({ s }) => (
         }}>{s.kpi.val}</div>
         <div style={{
           fontFamily: '"DM Mono",monospace', fontSize: 9,
-          color: `${T.active}77`, textTransform: 'uppercase', letterSpacing: '0.18em',
+          color: T.dim, textTransform: 'uppercase', letterSpacing: '0.18em',
           marginTop: 4,
         }}>{s.kpi.label}</div>
       </div>
@@ -302,11 +320,11 @@ const Detail = ({ s }) => (
           padding: '13px 28px',
           background: T.cyan, border: 'none', cursor: 'pointer',
           fontFamily: '"DM Sans",sans-serif', fontWeight: 600,
-          fontSize: 10.5, color: T.bg,
+          fontSize: 10.5, color: '#fff',
           textTransform: 'uppercase', letterSpacing: '0.2em',
           transition: 'background .28s',
         }}
-        onMouseEnter={e => e.currentTarget.style.background = T.white}
+        onMouseEnter={e => e.currentTarget.style.background = T.brand}
         onMouseLeave={e => e.currentTarget.style.background = T.cyan}
       >
         Solicitar Consulta
@@ -327,9 +345,10 @@ const Item = ({ s, isActive, onHover, onClick }) => (
     style={{
       display: 'flex', alignItems: 'center',
       gap: 16, padding: '18px 0',
-      borderBottom: `1px solid ${isActive ? T.brand + '55' : 'rgba(2,83,126,0.18)'}`,
+      borderBottom: `1px solid ${isActive ? T.lineStrong : T.line}`,
       cursor: 'pointer', transition: 'border-color .3s',
       position: 'relative',
+      background: isActive ? `linear-gradient(90deg, ${T.cyan}06 0%, transparent 80%)` : 'transparent',
     }}
   >
     {/* Active bar */}
@@ -345,13 +364,13 @@ const Item = ({ s, isActive, onHover, onClick }) => (
     {/* Num */}
     <span style={{
       fontFamily: '"DM Mono",monospace', fontSize: 10,
-      color: isActive ? T.cyan : `${T.brand}77`,
+      color: isActive ? T.cyan : T.dim,
       minWidth: 24, flexShrink: 0, transition: 'color .3s',
     }}>{s.num}</span>
 
     {/* Icon */}
     <div style={{
-      flexShrink: 0, color: isActive ? T.cyan : T.muted,
+      flexShrink: 0, color: isActive ? T.cyan : T.dim,
       lineHeight: 0, transition: 'color .3s',
     }}>{s.icon}</div>
 
@@ -363,7 +382,7 @@ const Item = ({ s, isActive, onHover, onClick }) => (
         fontFamily: '"Cormorant Garamond",serif', fontWeight: 600,
         fontSize: 'clamp(16px,1.9vw,22px)',
         lineHeight: 1.1, letterSpacing: '-0.015em',
-        color: isActive ? T.white : T.muted,
+        color: isActive ? T.ink : T.muted,
         transition: 'color .3s',
         whiteSpace: 'pre-line', flex: 1,
         paddingBottom: '0.05em',
@@ -372,7 +391,7 @@ const Item = ({ s, isActive, onHover, onClick }) => (
 
     {/* Arrow */}
     <motion.div
-      animate={{ rotate: isActive ? 0 : -90, color: isActive ? T.cyan : `${T.brand}55` }}
+      animate={{ rotate: isActive ? 0 : -90, color: isActive ? T.cyan : T.dim }}
       transition={{ duration: 0.3, ease: EXPO }}
       style={{ flexShrink: 0, lineHeight: 0 }}
     >
@@ -383,14 +402,13 @@ const Item = ({ s, isActive, onHover, onClick }) => (
   </div>
 );
 
-/* ─── MOBILE CARD (stacked on small screens) ─────── */
+/* ─── MOBILE CARD ─────── */
 const MobileCard = ({ s, isActive, onToggle }) => (
   <div style={{
-    border: `1px solid ${isActive ? T.brand + '66' : T.brand + '22'}`,
-    background: isActive ? `${T.brand}10` : 'transparent',
+    border: `1px solid ${isActive ? T.lineStrong : T.line}`,
+    background: isActive ? T.bgDeep : T.white,
     marginBottom: 12, transition: 'all .3s',
   }}>
-    {/* Header */}
     <div
       onClick={onToggle} data-c=""
       style={{
@@ -399,10 +417,10 @@ const MobileCard = ({ s, isActive, onToggle }) => (
       }}
     >
       <span style={{ fontFamily: '"DM Mono",monospace', fontSize: 9.5, color: T.cyan, minWidth: 22 }}>{s.num}</span>
-      <div style={{ color: isActive ? T.cyan : T.muted, lineHeight: 0, flexShrink: 0 }}>{s.icon}</div>
+      <div style={{ color: isActive ? T.cyan : T.dim, lineHeight: 0, flexShrink: 0 }}>{s.icon}</div>
       <span style={{
         fontFamily: '"Cormorant Garamond",serif', fontWeight: 600,
-        fontSize: 18, color: isActive ? T.white : T.muted,
+        fontSize: 18, color: isActive ? T.ink : T.muted,
         flex: 1, lineHeight: 1.1,
         whiteSpace: 'pre-line',
         paddingBottom: '0.04em',
@@ -410,7 +428,7 @@ const MobileCard = ({ s, isActive, onToggle }) => (
       <motion.div
         animate={{ rotate: isActive ? 45 : 0 }}
         transition={{ duration: 0.3, ease: EXPO }}
-        style={{ color: isActive ? T.cyan : `${T.brand}66`, lineHeight: 0 }}
+        style={{ color: isActive ? T.cyan : T.dim, lineHeight: 0 }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7" />
@@ -418,7 +436,6 @@ const MobileCard = ({ s, isActive, onToggle }) => (
       </motion.div>
     </div>
 
-    {/* Expanded */}
     <AnimatePresence>
       {isActive && (
         <motion.div
@@ -426,7 +443,7 @@ const MobileCard = ({ s, isActive, onToggle }) => (
           transition={{ duration: 0.45, ease: EXPO }}
           style={{ overflow: 'hidden' }}
         >
-          <div style={{ padding: '0 20px 20px', borderTop: `1px solid ${T.brand}28` }}>
+          <div style={{ padding: '0 20px 20px', borderTop: `1px solid ${T.line}` }}>
             <p style={{
               fontFamily: '"DM Sans",sans-serif', fontWeight: 300, fontSize: 13.5,
               color: T.muted, lineHeight: 1.8, margin: '16px 0',
@@ -435,7 +452,7 @@ const MobileCard = ({ s, isActive, onToggle }) => (
               {s.bullets.map(b => (
                 <span key={b} style={{
                   fontFamily: '"DM Mono",monospace', fontSize: 9,
-                  color: T.active, border: `1px solid ${T.active}44`,
+                  color: T.active, border: `1px solid ${T.active}55`,
                   padding: '4px 10px', textTransform: 'uppercase', letterSpacing: '0.14em',
                 }}>{b}</span>
               ))}
@@ -446,7 +463,7 @@ const MobileCard = ({ s, isActive, onToggle }) => (
                 padding: '12px 24px',
                 background: T.cyan, border: 'none', cursor: 'pointer',
                 fontFamily: '"DM Sans",sans-serif', fontWeight: 600,
-                fontSize: 10, color: T.bg,
+                fontSize: 10, color: '#fff',
                 textTransform: 'uppercase', letterSpacing: '0.18em',
               }}
             >
@@ -477,28 +494,28 @@ const Services = () => {
         position: 'relative', overflow: 'hidden',
       }}
     >
-      {/* Grid texture */}
+      {/* Grid texture — azul muy sutil sobre blanco */}
       <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, opacity: 0.45,
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, opacity: 1,
         backgroundImage: `
-          linear-gradient(${T.brand}09 1px, transparent 1px),
-          linear-gradient(90deg, ${T.brand}09 1px, transparent 1px)
+          linear-gradient(${T.brand}07 1px, transparent 1px),
+          linear-gradient(90deg, ${T.brand}07 1px, transparent 1px)
         `,
         backgroundSize: '72px 72px',
       }} />
 
-      {/* Noise */}
+      {/* Noise — mínimo, solo da textura táctil */}
       <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, opacity: 0.02,
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, opacity: 0.015,
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
         backgroundSize: '220px 220px',
       }} />
 
-      {/* Glow */}
+      {/* Glow — azul muy difuso */}
       <div style={{
         position: 'absolute', left: '40%', top: '10%',
         width: '45vw', height: '55vh', pointerEvents: 'none', zIndex: 0,
-        background: `radial-gradient(ellipse, ${T.brand}18 0%, transparent 60%)`,
+        background: `radial-gradient(ellipse, ${T.active}08 0%, transparent 60%)`,
       }} />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
@@ -516,7 +533,6 @@ const Services = () => {
           <div style={{
             width: '44%', flexShrink: 0,
             padding: '0 clamp(24px,5vw,80px)',
-            /* Sticky container */
             position: 'sticky',
             top: 0,
             alignSelf: 'flex-start',
@@ -528,7 +544,7 @@ const Services = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, ease: SILK }}
-              style={{ paddingLeft: 24 }} /* room for the active bar */
+              style={{ paddingLeft: 24 }}
             >
               {SVC.map(s => (
                 <Item
@@ -547,7 +563,7 @@ const Services = () => {
             {/* border divider */}
             <div style={{
               position: 'absolute', left: 0, top: 0, bottom: 0, width: 1,
-              background: `linear-gradient(180deg, transparent 0%, ${T.brand}44 20%, ${T.brand}44 80%, transparent 100%)`,
+              background: `linear-gradient(180deg, transparent 0%, ${T.lineStrong} 20%, ${T.lineStrong} 80%, transparent 100%)`,
             }} />
 
             <motion.div
@@ -555,8 +571,9 @@ const Services = () => {
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.9, ease: SILK, delay: 0.15 }}
               style={{
-                background: `linear-gradient(135deg, ${T.bgCard} 0%, ${T.bg} 100%)`,
-                border: `1px solid ${T.brand}30`,
+                background: T.bgCard,
+                border: `1px solid ${T.line}`,
+                boxShadow: `0 2px 40px ${T.brand}08, 0 0 0 1px ${T.line}`,
                 marginLeft: 0,
                 minHeight: 520,
                 position: 'relative', overflow: 'hidden',
@@ -594,7 +611,7 @@ const Services = () => {
             alignItems: 'center', justifyContent: 'space-between',
             gap: 20,
             padding: 'clamp(40px,5vh,64px) clamp(24px,5vw,80px) 0',
-            borderTop: `1px solid ${T.brand}22`,
+            borderTop: `1px solid ${T.line}`,
             marginTop: 'clamp(40px,5vh,64px)',
           }}
         >
@@ -602,12 +619,12 @@ const Services = () => {
             <p style={{
               fontFamily: '"Cormorant Garamond",serif', fontStyle: 'italic', fontWeight: 600,
               fontSize: 'clamp(20px,2.5vw,28px)',
-              color: T.muted, margin: 0, letterSpacing: '-0.01em',
+              color: T.brand, margin: 0, letterSpacing: '-0.01em',
               paddingBottom: '0.06em',
             }}>¿Tienes una necesidad específica?</p>
             <p style={{
               fontFamily: '"DM Sans",sans-serif', fontWeight: 300, fontSize: 13,
-              color: T.dim, margin: '5px 0 0',
+              color: T.muted, margin: '5px 0 0',
             }}>Diseñamos soluciones a medida para cada desafío del sector energético.</p>
           </div>
 
@@ -621,12 +638,12 @@ const Services = () => {
               border: `1px solid ${T.brand}`,
               cursor: 'pointer',
               fontFamily: '"DM Sans",sans-serif', fontWeight: 600,
-              fontSize: 10.5, color: T.cyan,
+              fontSize: 10.5, color: T.brand,
               textTransform: 'uppercase', letterSpacing: '0.2em',
               transition: 'all .3s', flexShrink: 0,
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = T.cyan; e.currentTarget.style.color = T.bg; e.currentTarget.style.borderColor = T.cyan; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = T.cyan; e.currentTarget.style.borderColor = T.brand; }}
+            onMouseEnter={e => { e.currentTarget.style.background = T.cyan; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = T.cyan; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = T.brand; e.currentTarget.style.borderColor = T.brand; }}
           >
             Agendar Consulta Estratégica
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
