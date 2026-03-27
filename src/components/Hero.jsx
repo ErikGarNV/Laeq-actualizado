@@ -605,7 +605,7 @@ const Marquee = () => {
 const STATS = [
   { val: 10,  suf: '+', label: 'Años de\nexperiencia',      delay: 1.5  },
   { val: 99,  suf: '%', label: 'Tasa de\néxito',            delay: 1.65 },
-  { val: 20,  suf: '+', label: 'Proyectos\nejecutados',      delay: 1.8  },
+  { val: 400,  suf: '+', label: 'Servicios\nde Consultoria',      delay: 1.8  },
   { val: 500, suf: '+', label: 'Profesionales\ncapacitados', delay: 1.95 },
 ];
 
@@ -849,7 +849,7 @@ const HeroSection = () => {
               <span style={{
                 fontFamily: '"Cormorant Garamond",serif', fontWeight: 700, fontStyle: 'italic',
                 fontSize: 'clamp(24px,3.2vw,42px)', color: T.brand + '1A', letterSpacing: '-0.04em',
-              }}>2000</span>
+              }}>2014</span>
               <p style={{
                 fontFamily: '"DM Mono",monospace', fontSize: 8.5,
                 color: T.dim, margin: 0,

@@ -138,7 +138,7 @@ const SVC = [
     short: 'Programas de capacitación técnica y regulatoria para equipos internos.',
     detail: 'Bindamos soporte y servicio de asesoría técnica - legal en Procedimientos Administrativos Sancionadores iniciados por OSINERGMIN a los agentes del mercado.',
     bullets: ['Soporte técnico', 'Soporte legal', 'PAS', 'Derecho Administrativo'],
-    kpi: { val: '70+', label: 'Asesorias Legales' },
+    kpi: { val: '50+', label: 'Asesorias Legales' },
     icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
   },
 ];
