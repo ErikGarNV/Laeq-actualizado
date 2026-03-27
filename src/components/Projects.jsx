@@ -43,8 +43,8 @@ const PROJECTS = [
     headline: '500 MW contratados',
     color: '#0A8FC7',
     summary: 'Asesoría integral en estructuración de contratos PPA para proyectos solares y eólicos.',
-    scope: 'Diseño y negociación de contratos PPA a 20 años para generación solar y eólica. Análisis de riesgo regulatorio, cláusulas de indexación y mecanismos de garantía ante  OSINERGMIN.',
-    results: ['Energía renovable contratada', 'Estructura PPA reconocida por el COES', 'Reducción 18% en costo tarifario', 'Contrato de 20 años firmado y operativo'],
+    scope: 'Diseño y negociación de contratos PPA . Análisis de riesgo regulatorio, cláusulas de indexación y mecanismos de garantía ante  OSINERGMIN.',
+    results: ['Energía renovable contratada', 'Estructura PPA ', '50% de costos de energia', 'Reduccion de riesgos regulatorios'],
     kpi: { val: '500 MW', label: 'Contratados' },
     links: [
       { label: 'LinkedIn LAEQ', url: 'https://www.linkedin.com/company/luis-espinoza-&-asociados' },
