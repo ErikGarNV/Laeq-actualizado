@@ -60,7 +60,7 @@ const PROJECTS = [
     headline: '15 procedimientos técnicos',
     color: '#1EB8F0',
     summary: 'Desarrollo del marco regulatorio integral para el sector gas natural peruano con OSINERGMIN, incluyendo metodologías tarifarias y normativa de supervisión.',
-    scope: 'Revisión del marco normativo, desarrollo de metodologías tarifarias innovadoras, Participacion en procedimiento tecnicos regulatorios  procedimientos técnicos de supervisión y fiscalización, mecanismos de incentivos para eficiencia operativa.',
+    scope: 'Revisión del marco normativo, desarrollo de metodologías tarifarias innovadoras, Participacion en procedimiento tecnicos regulatorios, supervicion y fiscalizacion técnicos de supervisión y fiscalización, mecanismos de incentivos para eficiencia operativa.',
     results: ['15 procedimientos técnicos especializados', 'Metodología tarifaria aprobada', '99% de implementación exitosa', 'Reducción 20% en tiempos de trámite'],
     kpi: { val: '99%', label: 'Implementación' },
     links: [
