@@ -28,15 +28,16 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
    TOKENS
 ════════════════════════════════════════════════ */
 const T = {
-  bg:     '#071E30',
-  bgCard: '#0A2640',
-  bgDeep: '#051525',
-  brand:  '#02537E',
-  active: '#0A8FC7',
-  cyan:   '#1EB8F0',
-  white:  '#E8F4FC',
-  muted:  'rgba(184,223,240,0.44)',
-  dim:    'rgba(184,223,240,0.2)',
+  bg:     '#FFFFFF',          /* blanco puro — fondo principal */
+  bgCard: '#EBF5FF',          /* azul hielo — cards y superficies */
+  bgDeep: '#DDEEFF',          /* azul suave — bordes, separadores */
+  brand:  '#02537E',          /* azul LAEQ — primario */
+  active: '#0A8FC7',          /* azul medio — activos */
+  cyan:   '#1EB8F0',          /* azul vivo — acento */
+  ink:    '#0D2B4E',          /* azul oscuro — texto principal */
+  muted:  'rgba(2,83,126,0.55)',  /* texto secundario */
+  dim:    'rgba(2,83,126,0.38)',  /* texto terciario */
+  line:   'rgba(2,83,126,0.10)', /* bordes sutiles */
 };
 const SILK = [0.16, 1, 0.3, 1];
 const EXPO = [0.76, 0, 0.24, 1];
@@ -122,13 +123,13 @@ const Marquee = ({ items, reverse, speed = 40 }) => {
               }}
               style={{
                 maxWidth:100, maxHeight:38, objectFit:'contain',
-                opacity:0.28,
+                opacity:0.50,
                 /* KEY FIX: no invert, no grayscale that breaks transparent PNGs.
                    brightness alone dims without destroying colour channels */
-                filter:'brightness(1.8) saturate(0)',
+                filter:'saturate(0) brightness(0.6) contrast(1.1)',
               }}
             />
-            <span style={{ display:'none', fontFamily:'"DM Mono",monospace', fontSize:8, color:`${T.active}44`, textTransform:'uppercase', letterSpacing:'0.14em', textAlign:'center', lineHeight:1.3 }}>{c.name}</span>
+            <span style={{ display:'none', fontFamily:'"DM Mono",monospace', fontSize:8, color:'rgba(10,143,199,0.50)', textTransform:'uppercase', letterSpacing:'0.14em', textAlign:'center', lineHeight:1.3 }}>{c.name}</span>
           </div>
         ))}
       </motion.div>
@@ -163,10 +164,11 @@ const LogoCard = ({ c, isActive, isAnyActive, onEnter, onLeave, onClick }) => {
         display:'flex', alignItems:'center', justifyContent:'center',
         padding:'18px 22px',
         cursor:'pointer', overflow:'hidden',
-        border:`1px solid ${isActive ? T.cyan+'44' : T.brand+'14'}`,
+        border:`1px solid ${isActive ? T.cyan+'66' : 'rgba(2,83,126,0.08)'}`,
+        boxShadow: isActive ? `0 4px 20px rgba(30,184,240,0.12)` : 'none',
         background: isActive
-          ? `linear-gradient(145deg, ${T.bgCard} 0%, ${T.brand}18 100%)`
-          : `${T.brand}06`,
+          ? `linear-gradient(145deg, #DDEEFF 0%, rgba(30,184,240,0.06) 100%)`
+          : '#FFFFFF',
         transition:'border-color .3s, background .3s, opacity .35s',
       }}
     >
@@ -211,9 +213,9 @@ const LogoCard = ({ c, isActive, isAnyActive, onEnter, onLeave, onClick }) => {
                inactive → desaturate + dim
                active   → full colour, slight glow */
             filter: isActive
-              ? `saturate(1.1) brightness(1.05) drop-shadow(0 0 6px ${T.cyan}55)`
-              : 'saturate(0) brightness(0.85)',
-            opacity: isActive ? 1 : 0.5,
+              ? `saturate(1.2) brightness(1.0) drop-shadow(0 0 8px rgba(30,184,240,0.30))`
+              : 'saturate(0) brightness(0.55) contrast(1.1)',
+            opacity: isActive ? 1 : 0.55,
             scale: isActive ? 1.06 : 1,
           }}
           transition={{ duration:0.4, ease:SILK }}
@@ -226,7 +228,7 @@ const LogoCard = ({ c, isActive, isAnyActive, onEnter, onLeave, onClick }) => {
         /* Fallback name tag */
         <span style={{
           fontFamily:'"DM Mono",monospace', fontSize:9.5,
-          color: isActive ? T.cyan : `${T.active}55`,
+          color: isActive ? T.cyan : 'rgba(10,143,199,0.45)',
           textTransform:'uppercase', letterSpacing:'0.18em',
           textAlign:'center', lineHeight:1.35, position:'relative', zIndex:1,
           transition:'color .3s',
@@ -260,8 +262,9 @@ const Detail = ({ c, sectorColor, onClose }) => (
     exit={{ opacity:0, x:24 }}
     transition={{ duration:0.45, ease:SILK }}
     style={{
-      background:`linear-gradient(145deg, ${T.bgCard} 0%, ${T.bg} 100%)`,
+      background:'linear-gradient(145deg, #EBF5FF 0%, #FFFFFF 100%)',
       border:`1px solid ${sectorColor}33`,
+      boxShadow:'0 8px 40px rgba(2,83,126,0.06)',
       padding:'clamp(22px,3vw,36px)',
       display:'flex', flexDirection:'column',
       justifyContent:'space-between',
@@ -276,7 +279,7 @@ const Detail = ({ c, sectorColor, onClose }) => (
       style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg, ${sectorColor} 0%, ${T.brand}44 60%, transparent 100%)`, transformOrigin:'left' }}
     />
     {/* glow */}
-    <div style={{ position:'absolute', top:'-20%', right:'-10%', width:'60%', height:'60%', pointerEvents:'none', background:`radial-gradient(ellipse, ${sectorColor}18 0%, transparent 65%)` }} />
+    <div style={{ position:'absolute', top:'-20%', right:'-10%', width:'60%', height:'60%', pointerEvents:'none', background:`radial-gradient(ellipse, ${sectorColor}12 0%, transparent 65%)` }} />
 
     <div style={{ position:'relative', zIndex:1 }}>
       {/* sector */}
@@ -292,21 +295,21 @@ const Detail = ({ c, sectorColor, onClose }) => (
         <img
           src={L(c.logo)} alt={c.name}
           onError={e => { e.currentTarget.style.display='none'; if (e.currentTarget.nextSibling) e.currentTarget.nextSibling.style.display='block'; }}
-          style={{ maxWidth:150, maxHeight:56, objectFit:'contain', filter:'brightness(1.05)', opacity:0.9 }}
+          style={{ maxWidth:150, maxHeight:56, objectFit:'contain', filter:'saturate(1) brightness(0.95) contrast(1.05)', opacity:0.92 }}
         />
-        <span style={{ display:'none', fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontSize:20, color:T.white }}>{c.name}</span>
+        <span style={{ display:'none', fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontSize:20, color:T.ink }}>{c.name}</span>
       </div>
 
       {/* name */}
-      <h4 style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontSize:'clamp(18px,2.5vw,28px)', color:T.white, margin:'0 0 8px', lineHeight:1.05, letterSpacing:'-0.02em', paddingBottom:'0.04em' }}>{c.name}</h4>
+      <h4 style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontSize:'clamp(18px,2.5vw,28px)', color:T.ink, margin:'0 0 8px', lineHeight:1.05, letterSpacing:'-0.02em', paddingBottom:'0.04em' }}>{c.name}</h4>
 
       {/* relation */}
-      <p style={{ fontFamily:'"DM Sans",sans-serif', fontWeight:300, fontSize:13, color:T.muted, lineHeight:1.75, margin:'0 0 16px' }}>{c.rel}</p>
+      <p style={{ fontFamily:'"DM Sans",sans-serif', fontWeight:300, fontSize:13, color:'rgba(2,83,126,0.60)', lineHeight:1.75, margin:'0 0 16px' }}>{c.rel}</p>
 
       {/* year */}
       <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:18 }}>
-        <span style={{ fontFamily:'"DM Mono",monospace', fontSize:9, color:`${T.active}66`, textTransform:'uppercase', letterSpacing:'0.2em' }}>{c.year}</span>
-        <div style={{ flex:1, height:1, background:`${T.brand}22` }} />
+        <span style={{ fontFamily:'"DM Mono",monospace', fontSize:9, color:'rgba(10,143,199,0.55)', textTransform:'uppercase', letterSpacing:'0.2em' }}>{c.year}</span>
+        <div style={{ flex:1, height:1, background:'rgba(2,83,126,0.12)' }} />
       </div>
     </div>
 
@@ -314,18 +317,18 @@ const Detail = ({ c, sectorColor, onClose }) => (
     <div style={{ position:'relative', zIndex:1, display:'flex', flexDirection:'column', gap:8 }}>
       {c.url && c.url !== '#' && (
         <a href={c.url} target="_blank" rel="noopener noreferrer"
-          style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:7, padding:'10px 16px', background:'transparent', border:`1px solid ${sectorColor}44`, fontFamily:'"DM Mono",monospace', fontSize:9, color:T.muted, textDecoration:'none', textTransform:'uppercase', letterSpacing:'0.16em', transition:'all .28s' }}
+          style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:7, padding:'10px 16px', background:'transparent', border:`1px solid ${sectorColor}44`, fontFamily:'"DM Mono",monospace', fontSize:9, color:'rgba(2,83,126,0.55)', textDecoration:'none', textTransform:'uppercase', letterSpacing:'0.16em', transition:'all .28s' }}
           onMouseEnter={e => { e.currentTarget.style.borderColor=sectorColor; e.currentTarget.style.color=sectorColor; e.currentTarget.style.background=`${sectorColor}10`; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor=`${sectorColor}44`; e.currentTarget.style.color=T.muted; e.currentTarget.style.background='transparent'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor=`${sectorColor}44`; e.currentTarget.style.color='rgba(2,83,126,0.55)'; e.currentTarget.style.background='transparent'; }}
         >
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
           Visitar {c.name}
         </a>
       )}
       <button onClick={onClose}
-        style={{ padding:'9px 16px', background:'transparent', border:`1px solid ${T.brand}22`, cursor:'pointer', fontFamily:'"DM Mono",monospace', fontSize:9, color:T.dim, textTransform:'uppercase', letterSpacing:'0.16em', transition:'all .28s' }}
+        style={{ padding:'9px 16px', background:'transparent', border:'1px solid rgba(2,83,126,0.14)', cursor:'pointer', fontFamily:'"DM Mono",monospace', fontSize:9, color:'rgba(2,83,126,0.50)', textTransform:'uppercase', letterSpacing:'0.16em', transition:'all .28s' }}
         onMouseEnter={e => { e.currentTarget.style.color=T.cyan; e.currentTarget.style.borderColor=`${T.cyan}44`; }}
-        onMouseLeave={e => { e.currentTarget.style.color=T.dim; e.currentTarget.style.borderColor=`${T.brand}22`; }}
+        onMouseLeave={e => { e.currentTarget.style.color='rgba(2,83,126,0.50)'; e.currentTarget.style.borderColor='rgba(2,83,126,0.14)'; }}
       >← Todos los clientes</button>
     </div>
   </motion.div>
@@ -357,15 +360,15 @@ const Clients = () => {
   const row2 = CLIENTS.filter(c => ['industria','universidad'].includes(c.sector));
 
   return (
-    <section ref={ref} id="clientes" style={{ background:T.bg, paddingTop:'clamp(80px,10vh,120px)', paddingBottom:'clamp(80px,10vh,120px)', position:'relative', overflow:'hidden' }}>
+    <section ref={ref} id="clientes" style={{ background:'linear-gradient(175deg,#FFFFFF 0%,#F0F8FF 60%,#EAF4FC 100%)', paddingTop:'clamp(80px,10vh,120px)', paddingBottom:'clamp(80px,10vh,120px)', position:'relative', overflow:'hidden' }}>
 
       {/* Grid texture */}
-      <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0, opacity:0.35,
-        backgroundImage:`linear-gradient(${T.brand}08 1px,transparent 1px),linear-gradient(90deg,${T.brand}08 1px,transparent 1px)`,
+      <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0, opacity:0.20,
+        backgroundImage:`linear-gradient(rgba(2,83,126,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(2,83,126,0.04) 1px,transparent 1px)`,
         backgroundSize:'72px 72px' }}
       />
       {/* Glow */}
-      <div style={{ position:'absolute', right:'-5%', top:'15%', width:'42vw', height:'52vh', pointerEvents:'none', zIndex:0, background:`radial-gradient(ellipse, ${T.brand}15 0%, transparent 60%)` }} />
+      <div style={{ position:'absolute', right:'-5%', top:'15%', width:'42vw', height:'52vh', pointerEvents:'none', zIndex:0, background:`radial-gradient(ellipse, rgba(10,143,199,0.06) 0%, transparent 60%)` }} />
       {/* Noise */}
       <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0, opacity:0.018,
         backgroundImage:`url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
@@ -389,7 +392,7 @@ const Clients = () => {
             <motion.h2
               initial={{ opacity:0, y:20 }} animate={inView ? { opacity:1, y:0 } : {}}
               transition={{ duration:0.9, ease:SILK, delay:0.1 }}
-              style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontSize:'clamp(42px,6.5vw,88px)', color:T.white, margin:0, lineHeight:1, letterSpacing:'-0.025em', paddingBottom:'0.08em' }}
+              style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontSize:'clamp(42px,6.5vw,88px)', color:T.ink, margin:0, lineHeight:1, letterSpacing:'-0.025em', paddingBottom:'0.08em' }}
             >
               Líderes del{' '}
               <em style={{ color:T.cyan, fontStyle:'italic', fontWeight:600 }}>Sector Energético</em>
@@ -408,9 +411,9 @@ const Clients = () => {
         <motion.div
           initial={{ opacity:0 }} animate={inView ? { opacity:1 } : {}}
           transition={{ duration:1, delay:0.2 }}
-          style={{ borderTop:`1px solid ${T.brand}14`, borderBottom:`1px solid ${T.brand}14`, background:`${T.brand}05`, marginBottom:'clamp(44px,5vh,64px)' }}
+          style={{ borderTop:'1px solid rgba(2,83,126,0.08)', borderBottom:'1px solid rgba(2,83,126,0.08)', background:'linear-gradient(90deg,#EBF5FF,#F5FAFF,#EBF5FF)', marginBottom:'clamp(44px,5vh,64px)' }}
         >
-          <div style={{ borderBottom:`1px solid ${T.brand}09` }}><Marquee items={row1} reverse={false} speed={38}/></div>
+          <div style={{ borderBottom:'1px solid rgba(2,83,126,0.06)' }}><Marquee items={row1} reverse={false} speed={38}/></div>
           <Marquee items={row2} reverse={true} speed={46}/>
         </motion.div>
 
@@ -430,18 +433,18 @@ const Clients = () => {
                   display:'flex', alignItems:'center', gap:8,
                   padding:'8px 16px',
                   background: isA ? s.color : 'transparent',
-                  border:`1px solid ${isA ? s.color : T.brand+'44'}`,
+                  border:`1px solid ${isA ? s.color : 'rgba(2,83,126,0.18)'}`,
                   cursor:'pointer',
                   fontFamily:'"DM Mono",monospace', fontSize:9.5,
-                  color: isA ? T.bg : T.muted,
+                  color: isA ? '#FFFFFF' : 'rgba(2,83,126,0.55)',
                   textTransform:'uppercase', letterSpacing:'0.18em',
                   transition:'all .28s', whiteSpace:'nowrap',
                 }}
-                onMouseEnter={e => { if (!isA) { e.currentTarget.style.borderColor=s.color+'66'; e.currentTarget.style.color=T.white; } }}
-                onMouseLeave={e => { if (!isA) { e.currentTarget.style.borderColor=T.brand+'44'; e.currentTarget.style.color=T.muted; } }}
+                onMouseEnter={e => { if (!isA) { e.currentTarget.style.borderColor=s.color+'66'; e.currentTarget.style.color=s.color; } }}
+                onMouseLeave={e => { if (!isA) { e.currentTarget.style.borderColor='rgba(2,83,126,0.18)'; e.currentTarget.style.color='rgba(2,83,126,0.55)'; } }}
               >
                 {s.label}
-                <span style={{ fontFamily:'"DM Mono",monospace', fontSize:8, background: isA ? 'rgba(4,24,42,0.25)' : `${T.brand}33`, color: isA ? T.bg : T.active, padding:'2px 6px' }}>{count}</span>
+                <span style={{ fontFamily:'"DM Mono",monospace', fontSize:8, background: isA ? 'rgba(255,255,255,0.22)' : 'rgba(2,83,126,0.08)', color: isA ? '#FFFFFF' : T.active, padding:'2px 6px' }}>{count}</span>
               </button>
             );
           })}
@@ -465,8 +468,8 @@ const Clients = () => {
                   display:'grid',
                   gridTemplateColumns:`repeat(auto-fill, minmax(${selected ? '120px' : '160px'}, 1fr))`,
                   gap:1,
-                  border:`1px solid ${T.brand}15`,
-                  background:`${T.brand}08`,
+                  border:'1px solid rgba(2,83,126,0.08)',
+                  background:'rgba(2,83,126,0.03)',
                 }}
               >
                 <AnimatePresence mode="popLayout">
@@ -486,7 +489,7 @@ const Clients = () => {
               {/* Hint */}
               <motion.p
                 initial={{ opacity:0 }} animate={inView ? { opacity:1 } : {}} transition={{ delay:0.6 }}
-                style={{ fontFamily:'"DM Mono",monospace', fontSize:8.5, color:`${T.active}38`, textAlign:'center', textTransform:'uppercase', letterSpacing:'0.24em', marginTop:12 }}
+                style={{ fontFamily:'"DM Mono",monospace', fontSize:8.5, color:'rgba(10,143,199,0.35)', textAlign:'center', textTransform:'uppercase', letterSpacing:'0.24em', marginTop:12 }}
               >
                 Hover para ver · Click para detalles
               </motion.p>
@@ -519,7 +522,7 @@ const Clients = () => {
         <motion.div
           initial={{ opacity:0, y:18 }} animate={inView ? { opacity:1, y:0 } : {}}
           transition={{ duration:0.8, ease:SILK, delay:0.35 }}
-          style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderTop:`1px solid ${T.brand}18`, borderBottom:`1px solid ${T.brand}18`, marginTop:'clamp(48px,6vh,72px)' }}
+          style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderTop:'1px solid rgba(2,83,126,0.10)', borderBottom:'1px solid rgba(2,83,126,0.10)', marginTop:'clamp(48px,6vh,72px)' }}
           className="clients-stats"
         >
           {[
@@ -528,9 +531,9 @@ const Clients = () => {
             { val:'99%',  label:'Satisfacción' },
             { val:'100%', label:'Confidencialidad' },
           ].map((s,i) => (
-            <div key={i} style={{ padding:'clamp(18px,2.5vw,28px)', borderRight: i<3 ? `1px solid ${T.brand}14` : 'none', textAlign:'center', background: i%2===0 ? `${T.brand}05` : 'transparent' }}>
+            <div key={i} style={{ padding:'clamp(18px,2.5vw,28px)', borderRight: i<3 ? '1px solid rgba(2,83,126,0.08)' : 'none', textAlign:'center', background: i%2===0 ? 'rgba(2,83,126,0.025)' : 'transparent' }}>
               <div style={{ fontFamily:'"Cormorant Garamond",serif', fontWeight:700, fontSize:'clamp(26px,3.8vw,48px)', color:T.cyan, lineHeight:1, letterSpacing:'-0.03em' }}>{s.val}</div>
-              <div style={{ fontFamily:'"DM Sans",sans-serif', fontWeight:300, fontSize:10.5, color:T.dim, textTransform:'uppercase', letterSpacing:'0.16em', marginTop:6 }}>{s.label}</div>
+              <div style={{ fontFamily:'"DM Sans",sans-serif', fontWeight:300, fontSize:10.5, color:'rgba(2,83,126,0.45)', textTransform:'uppercase', letterSpacing:'0.16em', marginTop:6 }}>{s.label}</div>
             </div>
           ))}
         </motion.div>
@@ -542,17 +545,17 @@ const Clients = () => {
           style={{ display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:20, padding:'clamp(32px,5vh,52px) clamp(24px,5vw,80px) 0' }}
         >
           <div>
-            <p style={{ fontFamily:'"Cormorant Garamond",serif', fontStyle:'italic', fontWeight:600, fontSize:'clamp(18px,2.3vw,26px)', color:T.muted, margin:0, paddingBottom:'0.06em' }}>
+            <p style={{ fontFamily:'"Cormorant Garamond",serif', fontStyle:'italic', fontWeight:600, fontSize:'clamp(18px,2.3vw,26px)', color:'rgba(2,83,126,0.65)', margin:0, paddingBottom:'0.06em' }}>
               ¿Tu empresa aún no está aquí?
             </p>
-            <p style={{ fontFamily:'"DM Sans",sans-serif', fontWeight:300, fontSize:12.5, color:T.dim, margin:'5px 0 0' }}>
+            <p style={{ fontFamily:'"DM Sans",sans-serif', fontWeight:300, fontSize:12.5, color:'rgba(2,83,126,0.40)', margin:'5px 0 0' }}>
               Únete a los líderes del sector energético que confían en LAEQ.
             </p>
           </div>
           <button
             data-c="consultar"
             style={{ display:'flex', alignItems:'center', gap:10, padding:'13px 28px', background:'transparent', border:`1px solid ${T.brand}`, cursor:'pointer', fontFamily:'"DM Sans",sans-serif', fontWeight:600, fontSize:10.5, color:T.cyan, textTransform:'uppercase', letterSpacing:'0.2em', transition:'all .3s', flexShrink:0 }}
-            onMouseEnter={e => { e.currentTarget.style.background=T.cyan; e.currentTarget.style.color=T.bg; e.currentTarget.style.borderColor=T.cyan; }}
+            onMouseEnter={e => { e.currentTarget.style.background=T.cyan; e.currentTarget.style.color='#FFFFFF'; e.currentTarget.style.borderColor=T.cyan; }}
             onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color=T.cyan; e.currentTarget.style.borderColor=T.brand; }}
           >
             Agendar Primera Consulta
